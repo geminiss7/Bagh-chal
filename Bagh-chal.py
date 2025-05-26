@@ -34,6 +34,19 @@ if not st.session_state.boardgame:
     st.session_state.boardgame = True
 
 else:
+  button_style = """
+    <style>
+    div[class^="element-container"] button {
+        width: 60px;
+        height: 60px;
+        padding: 0;
+        margin: 2px;
+        border-radius: 6px;
+        font-size: 24px;
+    }
+    </style>
+"""
+  
   for i in range(5):
         cols = st.columns(5)
         for j in range(5):
