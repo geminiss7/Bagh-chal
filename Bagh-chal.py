@@ -1,6 +1,5 @@
 import streamlit as st
 
-st.set_page_config(layout="wide")  # 넓게 쓰기
 st.title('바그 찰(Bagh-chal) 게임')
 
 if "boardgame" not in st.session_state:
