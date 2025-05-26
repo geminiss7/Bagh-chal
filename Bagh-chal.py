@@ -2,10 +2,10 @@ import streamlit as st
 
 st.title('바그 찰(Bagh-chal) 게임')
 
-if "boardgame" not in st.session_state:
-  st.session_state.show_board = False
+#if "boardgame" not in st.session_state:
+#  st.session_state.boardgame = False
 
-if not st.session_state.show_board:
+if not st.session_state.boardgame:
   rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(G)', '룰-호랑이(T)'])
   rule_data = {
     '룰-호랑이(T)' : {
@@ -31,7 +31,7 @@ if not st.session_state.show_board:
           st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
   
   if st.button('게임 시작'):
-    st.session_state.show_board = True
+    st.session_state.boardgame = True
 
 else:
   for i in range(5):
