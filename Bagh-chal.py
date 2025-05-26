@@ -34,21 +34,6 @@ if not st.session_state.boardgame:
     st.session_state.boardgame = True
 
 else:
-  st.markdown("<h2 style='text-align: center;'>바그 찰 게임판</h2>", unsafe_allow_html=True)
-
-  button_style = """
-    <style>
-    div[class^="element-container"] button {
-        width: 60px;
-        height: 60px;
-        padding: 0;
-        margin: 2px;
-        border-radius: 6px;
-        font-size: 24px;
-    }
-    </style>
-  """
-  st.markdown(button_style, unsafe_allow_html=True)
   for i in range(5):
         cols = st.columns(5)
         for j in range(5):
