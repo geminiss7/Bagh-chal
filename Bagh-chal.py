@@ -2,8 +2,8 @@ import streamlit as st
 
 st.title('바그 찰(Bagh-chal) 게임')
 
-#if "boardgame" not in st.session_state:
-#  st.session_state.boardgame = False
+if "boardgame" not in st.session_state:
+  st.session_state.boardgame = False
 
 if not st.session_state.boardgame:
   rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(G)', '룰-호랑이(T)'])
