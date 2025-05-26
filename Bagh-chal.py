@@ -1,5 +1,6 @@
 import streamlit as st
 
+st.set_page_config(layout="wide")  # 넓게 쓰기
 st.title('바그 찰(Bagh-chal) 게임')
 
 if "boardgame" not in st.session_state:
@@ -34,7 +35,6 @@ if not st.session_state.boardgame:
     st.session_state.boardgame = True
 
 else:
-  st.set_page_config(layout="wide")  # 넓게 쓰기
   st.markdown("<h2 style='text-align: center;'>바그 찰 게임판</h2>", unsafe_allow_html=True)
 
   button_style = """
