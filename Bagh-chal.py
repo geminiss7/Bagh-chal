@@ -45,8 +45,8 @@ else:
         font-size: 24px;
     }
     </style>
-"""
-  
+  """
+  st.markdown(button_style, unsafe_allow_html=True)
   for i in range(5):
         cols = st.columns(5)
         for j in range(5):
