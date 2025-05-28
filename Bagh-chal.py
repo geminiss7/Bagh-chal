@@ -35,10 +35,11 @@ if not st.session_state.boardgame:
     st.session_state.boardgame = True
 
 else:
-  for i in range(5):
-        cols = st.columns(5)
-        for j in range(5):
-            cols[j].button(" ", key=f"{i}-{j}")
+  if "board" not in st.session_state:
+    for i in range(5):
+          cols = st.columns(5)
+          for j in range(5):
+              cols[j].button(" ", key=f"{i}-{j}")
         st.session_state.board[0][0] = "T"
         st.session_state.board[0][4] = "T"
         st.session_state.board[4][0] = "T"
