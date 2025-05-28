@@ -29,6 +29,7 @@ if not st.session_state.boardgame:
           st.write(f"**말의 개수**: {말의_개수}")
           st.write(f"**말의 위치**: {말의_위치}")
           st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
+          st.write("게임은 염소가 먼저 시작합니다.")
   
   if st.button('게임 시작'):
     st.session_state.boardgame = True
