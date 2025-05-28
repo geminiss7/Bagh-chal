@@ -41,3 +41,9 @@ else:
         st.session_state.boardgame[0][4] = "T"
         st.session_state.boardgame[4][0] = "T"
         st.session_state.boardgame[4][4] = "T"
+
+  for i in range(5):
+    cols = st.columns(5)
+    for j in range(5):
+        text = st.session_state.board[i][j] or " "
+        cols[j].button(text, key=f"{i}-{j}")
