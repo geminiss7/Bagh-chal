@@ -39,3 +39,7 @@ else:
         cols = st.columns(5)
         for j in range(5):
             cols[j].button(" ", key=f"{i}-{j}")
+        st.session_state.board[0][0] = "T"
+        st.session_state.board[0][4] = "T"
+        st.session_state.board[4][0] = "T"
+        st.session_state.board[4][4] = "T"
