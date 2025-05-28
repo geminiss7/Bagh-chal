@@ -45,20 +45,21 @@ else:
   if "click" not in st.session_state:
     st.session_state.click = None
 
+  if "turn" not in st.session_state:
+    st.session_state.turn = "G"
+
   for i in range(5):
     cols = st.columns(5)
     for j in range(5):
         text = st.session_state.boardgame[i][j] or " "
         cols[j].button(text, key=f"{i}-{j}")
       
-  i = 1
-  while True:
-    if i % 2 != 0:
-      st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
+  if st.session_state =="G":
+    st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
       if cols[j].button(text,key=f"{i}-{j}"):
         st.session_state.click = (i,j)
         if st.session_state.boardgame[i][j] == " ":
           st.session_state.boardgame[i][j] = "G"
         else:
           st.title('유효하지 않은 움직임입니다!')
-        
+        st.session_state.turn = "T"
