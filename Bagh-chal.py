@@ -45,5 +45,5 @@ else:
   for i in range(5):
     cols = st.columns(5)
     for j in range(5):
-        text = st.session_state.board[i][j] or " "
+        text = st.session_state.boardgame[i][j] or " "
         cols[j].button(text, key=f"{i}-{j}")
