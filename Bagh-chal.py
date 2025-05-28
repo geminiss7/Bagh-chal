@@ -54,7 +54,7 @@ else:
         text = st.session_state.boardgame[i][j] or " "
         cols[j].button(text, key=f"{i}-{j}")
       
-  if st.session_state =="G":
+  if st.session_state.turn =="G":
     st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
     if cols[j].button(text,key=f"{i}-{j}"):
       st.session_state.click = (i,j)
