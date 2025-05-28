@@ -36,10 +36,14 @@ if not st.session_state.boardgame:
 
 else:
   if "board" not in st.session_state:
-    for i in range(5):
-          cols = st.columns(5)
-          for j in range(5):
-              cols[j].button(" ", key=f"{i}-{j}")
+    st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
+
+  # 화면에 버튼 표시
+  for i in range(5):
+    cols = st.columns(5)
+    for j in range(5):
+        cols[j].button(st.session_state.board[i][j] or " ", key=f"{i}-{j}")
+
   
   st.session_state.board[0][0] = "T"
   st.session_state.board[0][4] = "T"
