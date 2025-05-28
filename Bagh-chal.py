@@ -35,8 +35,8 @@ if not st.session_state.boardgame:
     st.session_state.boardgame = True
 
 else:
-  if "board" not in st.session_state:
-        st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
+  if "boardgame" in st.session_state:
+        st.session_state.boardgame = [["" for _ in range(5)] for _ in range(5)]
         st.session_state.board[0][0] = "T"
         st.session_state.board[0][4] = "T"
         st.session_state.board[4][0] = "T"
