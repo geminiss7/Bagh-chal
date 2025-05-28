@@ -56,10 +56,10 @@ else:
       
   if st.session_state =="G":
     st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
-      if cols[j].button(text,key=f"{i}-{j}"):
-        st.session_state.click = (i,j)
-        if st.session_state.boardgame[i][j] == " ":
-          st.session_state.boardgame[i][j] = "G"
-        else:
-          st.title('유효하지 않은 움직임입니다!')
-        st.session_state.turn = "T"
+    if cols[j].button(text,key=f"{i}-{j}"):
+      st.session_state.click = (i,j)
+      if st.session_state.boardgame[i][j] == " ":
+        st.session_state.boardgame[i][j] = "G"
+      else:
+        st.title('유효하지 않은 움직임입니다!')
+      st.session_state.turn = "T"
