@@ -22,30 +22,43 @@ if not st.session_state.boardgame:
   
   if st.button('룰 설명'):
       if rule in rule_data:
-          말의_개수 = rule_data[rule]['말의_개수']
-          말의_위치 = rule_data[rule]['말의_위치']
-          플레이_방법과_승리조건 = rule_data[rule]['플레이_방법과_승리조건']
+        말의_개수 = rule_data[rule]['말의_개수']
+        말의_위치 = rule_data[rule]['말의_위치']
+        플레이_방법과_승리조건 = rule_data[rule]['플레이_방법과_승리조건']
   
-          st.write(f"**말의 개수**: {말의_개수}")
-          st.write(f"**말의 위치**: {말의_위치}")
-          st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
-          st.write("게임은 염소가 먼저 시작합니다.")
+        st.write(f"**말의 개수**: {말의_개수}")
+        st.write(f"**말의 위치**: {말의_위치}")
+        st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
+        st.write("게임은 염소가 먼저 시작합니다.")
   
   if st.button('게임 시작'):
     st.session_state.boardgame = True
 
 else:
   if "boardgame" in st.session_state:
-        st.session_state.boardgame = [["" for _ in range(5)] for _ in range(5)]
-        st.session_state.boardgame[0][0] = "T"
-        st.session_state.boardgame[0][4] = "T"
-        st.session_state.boardgame[4][0] = "T"
-        st.session_state.boardgame[4][4] = "T"
+    st.session_state.boardgame = [["" for i in range(5)] for j in range(5)]
+    st.session_state.boardgame[0][0] = "T"
+    st.session_state.boardgame[0][4] = "T"
+    st.session_state.boardgame[4][0] = "T"
+    st.session_state.boardgame[4][4] = "T"
+    
+  if "click" not in st.session_state:
+    st.session_state.click = None
 
   for i in range(5):
     cols = st.columns(5)
     for j in range(5):
         text = st.session_state.boardgame[i][j] or " "
         cols[j].button(text, key=f"{i}-{j}")
-
-  if 
+      
+  i = 1
+  while True:
+    if i % 2 != 0:
+      st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
+      if cols[j].buttom(text,key=f"{i}-{j}"):
+        st.session_state.click = (i,j)
+        if st.session_state.boardgame[i][j] = " ":
+          st.session_state.boardgame[i][j] = "G"
+        else:
+          st.title('유효하지 않은 움직임입니다!')
+        
