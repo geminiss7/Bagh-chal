@@ -60,7 +60,7 @@ else:
         # 염소차례일 때 게임 진행
         if cols[j].button(text,key=f"{i}-{j}"):
           st.session_state.click1 = (i,j)
-          if st.session_state.board[i][j] == " " and st.session_state.count < 21:
+          if st.session_state.board[i][j] == "" and st.session_state.count < 21:
             st.session_state.board[i][j] = "G"
             st.session_state.turn = "T"
             st.session_state.count += 1
