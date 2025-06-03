@@ -111,7 +111,7 @@ if not st.session_state.start:
 
 else:
   if st.session_state.turn == "G":
-    st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
+    st.title('바그 찰(Bagh-chal) 게임 - 염소')
     for i in range(5):
       cols = st.columns(5)
       for j in range(5):
@@ -141,7 +141,7 @@ else:
             st.toast('유효하지 않은 움직임입니다!')
 
   else:
-    st.title('바그 찰(Bagh-chal) 게임 - 호랑이 차례')
+    st.title('바그 찰(Bagh-chal) 게임 - 호랑이')
     for i in range(5):
       cols = st.columns(5)
       for j in range(5):
