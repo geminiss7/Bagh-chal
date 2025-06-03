@@ -42,7 +42,6 @@ def Tiger_move(space1, space2):
       st.session_state.click1 = None
       st.session_state.click2 = None
       st.session_state.turn = "G"
-      st.experimental_rerun()  # ✅ 추가됨!
     else:
       st.toast('유효하지 않은 움직임입니다!')
       st.session_state.click2 = None
@@ -76,7 +75,6 @@ def check():
     st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
     st.session_state.start = False
     st.experimental_rerun()
-
 
 if "start" not in st.session_state:
   st.session_state.start = False
@@ -114,7 +112,6 @@ if not st.session_state.start:
     st.session_state.board[0][4] = "T"
     st.session_state.board[4][0] = "T"
     st.session_state.board[4][4] = "T"
-    st.experimental_rerun()  # ✅ 되살림!
 
 else:
   if st.session_state.turn == "G":
