@@ -111,7 +111,7 @@ else:
           # 옮길 위치를 정해야 하는 경우(옮길 곳의 좌표가 저장되어 있지 않고 그 좌표가 현재 염소의 좌표와 다르다면)  
             elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
               st.session_state.click2 = clicked_pos           # 옮길 위치의 좌표를 저장하고
-              place1 = st.session_state.click1                # 옮길 말의 좌표를 저장한 변수를 만들고
+              space1 = st.session_state.click1                # 옮길 말의 좌표를 저장한 변수를 만들고
               space2 = clicked_pos                            # 옮길 위치의 좌표를 저장한 변수를 만들어라
               move(space1, space2)
               st.session_state.turn = "T"                     # 그 이후 차례를 호랑이에게 넘긴다.
@@ -139,7 +139,7 @@ else:
             # 옮길 위치를 정해야 하는 경우(옮길 곳의 좌표가 저장되어 있지 않고 그 좌표가 현재 호랑이의 좌표와 다르다면)
             elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
               st.session_state.click2 = clicked_pos           # 옮길 위치의 좌표를 저장하고
-              place1 = st.session_state.click1                # 옮길 말의 좌표를 저장한 변수를 만들고
+              space1 = st.session_state.click1                # 옮길 말의 좌표를 저장한 변수를 만들고
               space2 = clicked_pos                            # 옮길 위치의 좌표를 저장한 변수를 만들어라
               move(space1, space2)
               st.session_state.turn = "G"                     # 그 이후 차례를 염소에게 넘긴다.
