@@ -11,7 +11,6 @@ def Goat_move(space1, space2):
       st.session_state.click1 = None
       st.session_state.click2 = None
       st.session_state.turn = "T"
-      st.experimental_rerun()
     else:
       st.toast('유효하지 않은 움직임입니다!')
       st.session_state.click2 = None
@@ -27,7 +26,6 @@ def Tiger_move(space1, space2):
       st.session_state.click1 = None
       st.session_state.click2 = None
       st.session_state.turn = "G"
-      st.experimental_rerun()
     else:
       st.toast('유효하지 않은 움직임입니다!')
       st.session_state.click2 = None
@@ -54,7 +52,6 @@ def check():
   if st.session_state.turn == "G" and st.session_state.catch >= 4:
     st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")
     st.session_state.start = False
-    st.experimental_rerun()
 
   tiger_can_move = False
   for i in range(5):
@@ -74,7 +71,6 @@ def check():
   if not tiger_can_move:
     st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
     st.session_state.start = False
-    st.experimental_rerun()
 
 if "start" not in st.session_state:
   st.session_state.start = False
@@ -128,7 +124,6 @@ else:
             st.session_state.turn = "T"
             st.session_state.click1 = None
             st.session_state.click2 = None
-            st.experimental_rerun()
 
           elif st.session_state.board[i][j] == "G" and st.session_state.count == 20:
             clicked_pos = (i, j)
