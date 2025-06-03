@@ -47,7 +47,7 @@ if not st.session_state.start:
 
 else:
   # 차례 안내
-  if st.sessoion_state.turn=="G":
+  if st.session_state.turn=="G":
     st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
   else:
     st.title('바그 찰(Bagh-chal) 게임 - 호랑이 차례')
