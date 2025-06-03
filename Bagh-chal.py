@@ -98,19 +98,20 @@ else:
             clicked_pos = (i, j)
 
             # 첫 클릭: 호랑이를 선택
-            if st.session_state.click1 is None and st.session_state.board[i][j] == "T":
-              st.session_state.click1 = clicked_pos
-              st.toast("이동할 위치를 선택하세요.")
-            else:
-              st.toast("호랑이를 선택하세요.")
+            if st.session_state.click1 is None:
+              if st.session_state.board[i][j] == "T":
+                st.session_state.click1 = clicked_pos
+                st.toast("이동할 위치를 선택하세요.")
+              else:
+                st.toast("호랑이를 선택하세요.")
 
             # 두 번째 클릭: 이동할 위치 선택
             elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
               st.session_state.click2 = clicked_pos
-              if 위에서 정의한 함수로 이동 가능한 좌표인지 확인 == True:
+              '''if 위에서 정의한 함수로 이동 가능한 좌표인지 확인 == True:
                 처음 클릭한 버튼의 값을 비우고 두번쨰로 클릭한 버튼에  "T"를 채움
                 만약 염소를 잡을 수 있는 경우라면 염소가 있던 버튼의 값을 비우고 염소의 개수를 -1함
-            
+            '''
           else:
             st.toast('유효하지 않은 움직임입니다!')
 
