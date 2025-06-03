@@ -1,5 +1,24 @@
 import streamlit as st
 
+def move(st.session_state.click1, st.session_state.click2):
+  if st.session_state.turn =="G":
+    (i,j) = st.session_state.click1
+    (m,n) = st.session_state.click2
+    if ((i - m) == 1 or (i-m) == -1) and ((j - n) == 1 or (j - n) == -1):
+      return True
+    else:
+      return False
+
+  else: 
+    (i,j) = st.session_state.click1
+    (m,n) = st.session_state.click2
+    if ((i - m) == 1 or (i-m) == -1) and ((j - n) == 1 or (j - n) == -1):
+      return True
+    elif 
+    else:
+      return False
+
+
 # 게임의 시작 조건 정의
 if "start" not in st.session_state:
   st.session_state.start = False
@@ -45,7 +64,7 @@ if not st.session_state.start:
     st.session_state.board[0][4] = "T"
     st.session_state.board[4][0] = "T"
     st.session_state.board[4][4] = "T"
-    st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
+    #st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
 
 else:
   # 차례 안내
@@ -64,7 +83,8 @@ else:
             st.session_state.board[i][j] = "G"
             st.session_state.turn = "T"
             st.session_state.count += 1
-            st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
+            st.session_state.click1 = None
+            #st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
           #elif st.session_state.board[i][j] == "G" and st.session_state.count == 20:
             
           else:
@@ -73,7 +93,30 @@ else:
   else:
     st.title('바그 찰(Bagh-chal) 게임 - 호랑이 차례')
     for i in range(5):
-      cols = st.columns(5)
-      for j in range(5):
+    cols = st.columns(5)
+    for j in range(5):
         text = st.session_state.board[i][j] or " "
-        cols[j].button(text,key=f"{i}-{j}")
+        if cols[j].button(text, key=f"{i}-{j}"):
+            clicked_pos = (i, j)
+
+            # 첫 클릭: 호랑이를 선택
+            if st.session_state.click1 is None and st.session_state.board[i][j] == "T":
+              st.session_state.click1 = clicked_pos
+              st.toast("이동할 위치를 선택하세요.")
+            else:
+              st.toast("호랑이를 선택하세요.")
+
+            # 두 번째 클릭: 이동할 위치 선택
+            elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
+              st.session_state.click2 = clicked_pos
+              if 위에서 정의한 함수로 이동 가능한 좌표인지 확인 == True:
+                처음 클릭한 버튼의 값을 비우고 두번쨰로 클릭한 버튼에  "T"를 채움
+                만약 염소를 잡을 수 있는 경우라면 염소가 있던 버튼의 값을 비우고 염소의 개수를 -1함
+            
+          else:
+            st.toast('유효하지 않은 움직임입니다!')
+
+
+
+
+
