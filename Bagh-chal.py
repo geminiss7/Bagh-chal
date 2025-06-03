@@ -13,11 +13,11 @@ def move(space1, space2):
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       
-  # 호랑이가 염소를 잡으려 할 경우에서(호랑이 차례이고)
-  elif st.session_state.turn == "T":
+  # 이동 거리가 상하좌우로 두칸이거나 대각선으로 두칸인 경우에서
+  elif (abs(i - m) == 2 and j == n) or (i == m and abs(j - n) == 2) or (abs(i - m) == 2 and abs(j - n) == 2):
     
-    #이동 거리가 상하좌우로 두칸이거나 대각선으로 두칸인 경우에서
-    if ((abs(i - m) == 2 and j == n) or (i == m and abs(j - n) == 2) or (abs(i - m) == 2 and abs(j - n) == 2)):
+    # 호랑이가 염소를 잡으려 할 경우에서(호랑이 차례이고)
+    if (st.session_state.turn == "T"):
       # 이동하려는 칸이 비어있고, 이동하려는 중간 칸에 염소가 있을 때
       if st.session_state.board[m][n] == "" and st.session_state.board[(i+m)//2][(j+n)//2] == "G":
         st.session_state.board[i][j] = ""                      # 호랑이가 있던 칸을 비우고
@@ -27,6 +27,7 @@ def move(space1, space2):
         st.toast(f"잡은 염소의 수 {st.session_state.catch}")   # 그리고 알려라.
         st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
         st.session_state.click2 = None
+        st.session_state.turn = "G"                            # 그 이후 차례를 염소에게 넘긴다.
         
       else:
         st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
@@ -144,7 +145,6 @@ else:
               space1 = st.session_state.click1                # 옮길 말의 좌표를 저장한 변수를 만들고
               space2 = clicked_pos                            # 옮길 위치의 좌표를 저장한 변수를 만들어라
               move(space1, space2)
-              st.session_state.turn = "G"                     # 그 이후 차례를 염소에게 넘긴다.
           
             else:
               st.toast('유효하지 않은 움직임입니다!')         # 염소의 말이 있는 칸이나 빈 칸을 클릭했을 경우
