@@ -74,7 +74,7 @@ else:
     st.title('바그 찰(Bagh-chal) 게임 - 호랑이 차례')
     for i in range(5):
       cols = st.columns(5)
-    for j in range(5):
+      for j in range(5):
         text = st.session_state.board[i][j] or " "
         if cols[j].button(text, key=f"{i}-{j}"):
             clicked_pos = (i, j)
