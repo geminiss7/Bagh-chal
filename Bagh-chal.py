@@ -1,23 +1,5 @@
 import streamlit as st
-'''
-def move(st.session_state.click1, st.session_state.click2):
-  if st.session_state.turn =="G":
-    (i,j) = st.session_state.click1
-    (m,n) = st.session_state.click2
-    if ((i - m) == 1 or (i-m) == -1) and ((j - n) == 1 or (j - n) == -1):
-      return True
-    else:
-      return False
 
-  else: 
-    (i,j) = st.session_state.click1
-    (m,n) = st.session_state.click2
-    if ((i - m) == 1 or (i-m) == -1) and ((j - n) == 1 or (j - n) == -1):
-      return True
-    elif 
-    else:
-      return False
-'''
 
 # 게임의 시작 조건 정의
 if "start" not in st.session_state:
