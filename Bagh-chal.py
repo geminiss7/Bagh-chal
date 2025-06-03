@@ -23,6 +23,7 @@ def move(space1, space2):
         st.session_state.board[m][n] = "T"                     # 이동하려는 칸을 T로 채우고
         st.session_state.board[(i+m)//2][(j+n)//2] = ""        # 염소가 있는 칸을 비우고
         st.session_state.catch += 1                            # 잡은 염소의 수를 1 올려라.
+        st.toast(f"잡은 염소의 수 {st.session_state.catch}")   # 그리고 알려라.
         st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
         st.session_state.click2 = None
         
