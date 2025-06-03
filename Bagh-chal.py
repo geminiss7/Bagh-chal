@@ -32,6 +32,7 @@ if not st.session_state.start:
       st.write(f"**말의 위치**: {말의_위치}")
       st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
       st.write("게임은 염소가 먼저 시작합니다. 말을 움직일 경우엔 움직이고 싶은 말을 클릭하고 움직이고 싶은 위치로 움직이면 됩니다.")
+      st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
       
   # 게임 시작하고 보드게임 판, 클릭유무, 차례, 염소 말의 수를 저장하는 변수 생성, 저장
   if st.button('게임 시작'):
@@ -45,7 +46,7 @@ if not st.session_state.start:
     st.session_state.board[0][4] = "T"
     st.session_state.board[4][0] = "T"
     st.session_state.board[4][4] = "T"
-    
+    st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
 
 else:
   # 차례 안내
@@ -64,7 +65,7 @@ else:
             st.session_state.board[i][j] = "G"
             st.session_state.turn = "T"
             st.session_state.count += 1
-             st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
+            st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
           #elif st.session_state.board[i][j] == "G" and st.session_state.count == 20:
             
           else:
