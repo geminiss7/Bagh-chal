@@ -26,7 +26,7 @@ def Tiger_move(space1, space2):
       st.session_state.board[i][j] = ""                      # 호랑이가 처음에 있던 곳을 비운다.
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
-      st.session_state.turn == "G"                           # 그 이후 차례를 염소에게 넘긴다.
+      st.session_state.turn = "G"                           # 그 이후 차례를 염소에게 넘긴다.
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click2 = None
