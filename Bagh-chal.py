@@ -1,14 +1,13 @@
 import streamlit as st
 
-# 시작 화면
-st.title('바그 찰(Bagh-chal) 게임')
-
 # 게임의 시작 조건 정의
 if "start" not in st.session_state:
   st.session_state.start = False
 
 # 게임이 시작하기 전 화면에서 실행
 if not st.session_state.start:
+  # 시작 화면
+  st.title('바그 찰(Bagh-chal) 게임')
   rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(G)', '룰-호랑이(T)'])
   rule_data = {
     '룰-호랑이(T)' : {
@@ -56,19 +55,19 @@ else:
     # 보드판 생성(위에서 한 것은 값의 저장용, 이것은 보이게 해주는 코드)
     for i in range(5):
       cols = st.columns(5)
-    for j in range(5):
-      text = st.session_state.board[i][j] or " "
-      # 염소차례일 때 게임 진행
-      if cols[j].button(text,key=f"{i}-{j}"):
-        st.session_state.click1 = (i,j)
-        if st.session_state.board[i][j] == " " and st.session_state.count < 21:
-          st.session_state.board[i][j] = "G"
-          st.session_state.turn = "T"
-          st.session_state.count += 1
-        #elif st.session_state.board[i][j] == "G" and st.session_state.count == 20:
-          
-        else:
-          st.toast('유효하지 않은 움직임입니다!')
+      for j in range(5):
+        text = st.session_state.board[i][j] or " "
+        # 염소차례일 때 게임 진행
+        if cols[j].button(text,key=f"{i}-{j}"):
+          st.session_state.click1 = (i,j)
+          if st.session_state.board[i][j] == " " and st.session_state.count < 21:
+            st.session_state.board[i][j] = "G"
+            st.session_state.turn = "T"
+            st.session_state.count += 1
+          #elif st.session_state.board[i][j] == "G" and st.session_state.count == 20:
+            
+          else:
+            st.toast('유효하지 않은 움직임입니다!')
 
   else:
     st.title('바그 찰(Bagh-chal) 게임 - 호랑이 차례')
