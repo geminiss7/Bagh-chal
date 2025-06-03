@@ -94,7 +94,7 @@ if not st.session_state.start:
       st.write(f"**말의 개수**: {rule_data[rule]['말의_개수']}")
       st.write(f"**말의 위치**: {rule_data[rule]['말의_위치']}")
       st.write(f"**플레이 방법과 승리조건**: {rule_data[rule]['플레이_방법과_승리조건']}")
-      st.write("게임은 염소가 먼저 시작합니다. 말을 움직일 경우엔 움직이고 싶은 말을 클릭하고 움직이고 싶은 위치로 움직이면 됩니다.")
+      st.write("게임은 염소가 먼저 시작합니다. 말을 움직일 경우엔 움직이고 싶은 말을 클릭하고 움직이고 싶은 곳을 두번 누르시면 됩니다.")
 
   if st.button('게임 시작'):
     st.session_state.start = True
