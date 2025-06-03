@@ -1,19 +1,32 @@
 import streamlit as st
 
-def move(space1, space2):
+def Goat_move(space1, space2):
   i, j = space1
   m, n = space2
   
-  # 통상적으로 이동이 가능한 경우(현재 있는 칸에서 상하좌우, 대각선으로 한칸인 경우에서)
-  if (abs(i - m) <= 1 and abs(j - n) <= 1) and not (i == m and j == n):
+  # 현재 있는 칸에서 상하좌우, 대각선으로 한칸인 경우에서
+  if (abs(i - m) == 1 and j == n) or (i == m and abs(j - n) == 1) or (abs(i - m) == 1 and abs(j - n) == 1):
     if st.session_state.board[m][n] == "":                   # 이동하려는 칸이 비어있다면
-      st.session_state.board[m][n] = st.session_state.turn   # 현재 차례에 해당하는 값(T 아니면 G)를 넣는다.
+      st.session_state.board[m][n] = "G"                     # 염소를 넣는다.
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
-      if st.session_state.turn == "G":                       # 그 이후 차례를 호랑이 / 염소에게 넘긴다.
-        st.session_state.turn == "T"
-      else:
-        st.session_state.turn == "G"
+      st.session_state.turn == "T"                           # 그 이후 차례를 호랑이에게 넘긴다.
+    else:
+      st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
+      st.session_state.click2 = None
+
+def Tiger_move(space1, space2):
+  i, j = space1
+  m, n = space2
+  
+  # 현재 있는 칸에서 상하좌우, 대각선으로 한칸인 경우에서
+  if (abs(i - m) == 1 and j == n) or (i == m and abs(j - n) == 1) or (abs(i - m) == 1 and abs(j - n) == 1):
+    if st.session_state.board[m][n] == "":                   # 이동하려는 칸이 비어있다면
+      st.session_state.board[m][n] = "T"                     # 호랑이를 넣고
+      st.session_state.board[i][j] = ""                      # 호랑이가 처음에 있던 곳을 비운다.
+      st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
+      st.session_state.click2 = None
+      st.session_state.turn == "G"                           # 그 이후 차례를 염소에게 넘긴다.
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click2 = None
@@ -21,22 +34,20 @@ def move(space1, space2):
   # 이동 거리가 상하좌우로 두칸이거나 대각선으로 두칸인 경우에서
   elif (abs(i - m) == 2 and j == n) or (i == m and abs(j - n) == 2) or (abs(i - m) == 2 and abs(j - n) == 2):
     
-    # 호랑이가 염소를 잡으려 할 경우에서(호랑이 차례이고)
-    if (st.session_state.turn == "T"):
-      # 이동하려는 칸이 비어있고, 이동하려는 중간 칸에 염소가 있을 때
-      if st.session_state.board[m][n] == "" and st.session_state.board[(i+m)//2][(j+n)//2] == "G":
-        st.session_state.board[i][j] = ""                      # 호랑이가 있던 칸을 비우고
-        st.session_state.board[m][n] = "T"                     # 이동하려는 칸을 T로 채운다.
-        st.session_state.board[(i+m)//2][(j+n)//2] = ""        # 염소가 있는 칸을 비우고
-        st.session_state.catch += 1                            # 잡은 염소의 수를 1 올려라.
-        st.toast(f"잡은 염소의 수 {st.session_state.catch}")   # 그리고 알려라.
-        st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
-        st.session_state.click2 = None
-        st.session_state.turn = "G"                            # 그 이후 차례를 염소에게 넘긴다.
-        
-      else:
-        st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
-        st.session_state.click2 = None
+    # 이동하려는 칸이 비어있고, 이동하려는 중간 칸에 염소가 있을 때
+    if st.session_state.board[m][n] == "" and st.session_state.board[(i+m)//2][(j+n)//2] == "G":
+      st.session_state.board[i][j] = ""                      # 호랑이가 있던 칸을 비우고
+      st.session_state.board[m][n] = "T"                     # 이동하려는 칸을 T로 채운다.
+      st.session_state.board[(i+m)//2][(j+n)//2] = ""        # 염소가 있는 칸을 비우고
+      st.session_state.catch += 1                            # 잡은 염소의 수를 1 올려라.
+      st.toast(f"잡은 염소의 수 {st.session_state.catch}")   # 그리고 알려라.
+      st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
+      st.session_state.click2 = None
+      st.session_state.turn = "G"                            # 그 이후 차례를 염소에게 넘긴다.
+      
+    else:
+      st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
+      st.session_state.click2 = None
 
   else:
     st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
@@ -123,7 +134,7 @@ else:
               st.session_state.click2 = clicked_pos           # 옮길 위치의 좌표를 저장하고
               space1 = st.session_state.click1                # 옮길 말의 좌표를 저장한 변수를 만들고
               space2 = clicked_pos                            # 옮길 위치의 좌표를 저장한 변수를 만들어라
-              move(space1, space2)
+              Goat_move(space1, space2)
             else:
               st.toast('유효하지 않은 움직임입니다!')          # 처음 클릭과 두번째 클릭이 같은 경우 
           else:
@@ -150,7 +161,7 @@ else:
               st.session_state.click2 = clicked_pos           # 옮길 위치의 좌표를 저장하고
               space1 = st.session_state.click1                # 옮길 말의 좌표를 저장한 변수를 만들고
               space2 = clicked_pos                            # 옮길 위치의 좌표를 저장한 변수를 만들어라
-              move(space1, space2)
+              Tiger_move(space1, space2)
           
             else:
               st.toast('유효하지 않은 움직임입니다!')         # 염소의 말이 있는 칸이나 빈 칸을 클릭했을 경우
