@@ -37,15 +37,16 @@ if not st.session_state.start:
   # 게임 시작하고 보드게임 판, 클릭유무, 차례, 염소 말의 수를 저장하는 변수 생성, 저장
   if st.button('게임 시작'):
     st.session_state.start = True
+    st.session_state.turn = "G"
+    st.session_state.click1 = None
+    st.session_state.click2 = None
+    st.session_state.count = 0
     st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
     st.session_state.board[0][0] = "T"
     st.session_state.board[0][4] = "T"
     st.session_state.board[4][0] = "T"
     st.session_state.board[4][4] = "T"
-    st.session_state.turn = "G"
-    st.session_state.click1 = None
-    st.session_state.click2 = None
-    st.session_state.count = 0
+    
 
 else:
   # 차례 안내
@@ -54,7 +55,7 @@ else:
 
     # 보드판 생성(위에서 한 것은 값의 저장용, 이것은 보이게 해주는 코드)
     for i in range(5):
-    cols = st.columns(5)
+      cols = st.columns(5)
     for j in range(5):
       text = st.session_state.board[i][j] or " "
       # 염소차례일 때 게임 진행
