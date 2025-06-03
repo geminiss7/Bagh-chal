@@ -10,6 +10,10 @@ def move(space1, space2):
       st.session_state.board[m][n] = st.session_state.turn   # 현재 차례에 해당하는 값(T 아니면 G)를 넣는다.
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
+      if st.session_state.turn == "G":                       # 그 이후 차례를 호랑이 / 염소에게 넘긴다.
+        st.session_state.turn == "T"
+      else:
+        st.session_state.turn == "G"
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click2 = None
@@ -120,7 +124,6 @@ else:
               space1 = st.session_state.click1                # 옮길 말의 좌표를 저장한 변수를 만들고
               space2 = clicked_pos                            # 옮길 위치의 좌표를 저장한 변수를 만들어라
               move(space1, space2)
-              st.session_state.turn = "T"                     # 그 이후 차례를 호랑이에게 넘긴다.
             else:
               st.toast('유효하지 않은 움직임입니다!')          # 처음 클릭과 두번째 클릭이 같은 경우 
           else:
