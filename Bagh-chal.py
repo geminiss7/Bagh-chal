@@ -20,7 +20,8 @@ def move(space1, space2):
     if ((abs(i - m) == 2 and j == n) or (i == m and abs(j - n) == 2) or (abs(i - m) == 2 and abs(j - n) == 2)):
       # 이동하려는 칸이 비어있고, 이동하려는 중간 칸에 염소가 있을 때
       if st.session_state.board[m][n] == "" and st.session_state.board[(i+m)//2][(j+n)//2] == "G":
-        st.session_state.board[m][n] = "T"                     # 이동하려는 칸을 T로 채우고
+        st.session_state.board[i][j] = ""                      # 호랑이가 있던 칸을 비우고
+        st.session_state.board[m][n] = "T"                     # 이동하려는 칸을 T로 채운다.
         st.session_state.board[(i+m)//2][(j+n)//2] = ""        # 염소가 있는 칸을 비우고
         st.session_state.catch += 1                            # 잡은 염소의 수를 1 올려라.
         st.toast(f"잡은 염소의 수 {st.session_state.catch}")   # 그리고 알려라.
