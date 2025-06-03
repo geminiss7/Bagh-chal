@@ -64,6 +64,7 @@ else:
             st.session_state.board[i][j] = "G"
             st.session_state.turn = "T"
             st.session_state.count += 1
+             st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
           #elif st.session_state.board[i][j] == "G" and st.session_state.count == 20:
             
           else:
