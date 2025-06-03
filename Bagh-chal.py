@@ -35,31 +35,36 @@ if not st.session_state.start:
     st.session_state.start = True
 
 else:
+  if "click" not in st.session_state:
+  st.session_state.click = None
+    
+  if "turn" not in st.session_state: 
+  st.session_state.turn = "G"
   if "boardgame" not in st.session_state:
     st.session_state.boardgame = [["" for i in range(5)] for j in range(5)]
     st.session_state.boardgame[0][0] = "T"
     st.session_state.boardgame[0][4] = "T"
     st.session_state.boardgame[4][0] = "T"
     st.session_state.boardgame[4][4] = "T"
-    
-  if "click" not in st.session_state:
-    st.session_state.click = None
-
-  if "turn" not in st.session_state:
-    st.session_state.turn = "G"
-
-  for i in range(5):
-    cols = st.columns(5)
-    for j in range(5):
-        text = st.session_state.boardgame[i][j] or " "
-        cols[j].button(text, key=f"{i}-{j}")
       
-  if st.session_state.turn =="G":
-    st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
-    if cols[j].button(text,key=f"{i}-{j}"):
-      st.session_state.click = (i,j)
-      if st.session_state.boardgame[i][j] == " ":
-        st.session_state.boardgame[i][j] = "G"
-      else:
-        st.title('유효하지 않은 움직임입니다!')
-      st.session_state.turn = "T"
+    if "click" not in st.session_state:
+      st.session_state.click = None
+  
+    if "turn" not in st.session_state:
+      st.session_state.turn = "G"
+  
+    for i in range(5):
+      cols = st.columns(5)
+      for j in range(5):
+          text = st.session_state.boardgame[i][j] or " "
+          cols[j].button(text, key=f"{i}-{j}")
+        
+    if st.session_state.turn =="G":
+      st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
+      if cols[j].button(text,key=f"{i}-{j}"):
+        st.session_state.click = (i,j)
+        if st.session_state.boardgame[i][j] == " ":
+          st.session_state.boardgame[i][j] = "G"
+        else:
+          st.title('유효하지 않은 움직임입니다!')
+        st.session_state.turn = "T"
