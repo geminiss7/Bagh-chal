@@ -56,12 +56,11 @@ else:
   for i in range(5):
     cols = st.columns(5)
     for j in range(5):
-      text = st.session_state.boardgame[i][j] or " "
-      cols[j].button(text, key=f"{i}-{j}")
+      text = st.session_state.board[i][j] or " "
       if cols[j].button(text,key=f"{i}-{j}"):
         st.session_state.click = (i,j)
-        if st.session_state.boardgame[i][j] == " ":
-          st.session_state.boardgame[i][j] = "G"
+        if st.session_state.board[i][j] == " ":
+          st.session_state.board[i][j] = "G"
         else:
           st.title('유효하지 않은 움직임입니다!')
         st.session_state.turn = "T"
