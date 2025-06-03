@@ -97,6 +97,8 @@ else:
             st.session_state.board[i][j] = "G"               # 선택한 좌표에 값을 채워넣고
             st.session_state.count += 1                      # 놓은 염소의 수를 하나 늘린다.
             st.session_state.turn = "T"                      # 그 이후 차례를 호랑이에게 넘긴다.
+            st.session_state.click1 = None                   # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
+            st.session_state.click2 = None
             #st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
           
           # 선택한 좌표가 염소로 채워져있고 놓은 염소의 말이 20개인 경우
