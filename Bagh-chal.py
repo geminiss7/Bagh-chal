@@ -7,7 +7,8 @@ def Goat_move(space1, space2):
   # 현재 있는 칸에서 상하좌우, 대각선으로 한칸인 경우에서
   if (abs(i - m) == 1 and j == n) or (i == m and abs(j - n) == 1) or (abs(i - m) == 1 and abs(j - n) == 1):
     if st.session_state.board[m][n] == "":                   # 이동하려는 칸이 비어있다면
-      st.session_state.board[m][n] = "G"                     # 염소를 넣는다.
+      st.session_state.board[m][n] = "G"                     # 염소를 넣고
+      st.session_state.board[i][j] = ""                      # 염소가 처음에 있던 곳을 비운다.
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
       st.session_state.turn == "T"                           # 그 이후 차례를 호랑이에게 넘긴다.
