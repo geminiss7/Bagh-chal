@@ -32,9 +32,9 @@ if not st.session_state.start:
       st.write(f"**말의 개수**: {말의_개수}")
       st.write(f"**말의 위치**: {말의_위치}")
       st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
-      st.write("게임은 염소가 먼저 시작합니다.")
+      st.write("게임은 염소가 먼저 시작합니다. 말을 움직일 경우엔 움직이고 싶은 말을 클릭하고 움직이고 싶은 위치로 움직이면 됩니다.")
       
-  # 게임 시작하고 보드게임 판, 클릭유무, 차례 저장
+  # 게임 시작하고 보드게임 판, 클릭유무, 차례, 염소 말의 수를 저장하는 변수 생성, 저장
   if st.button('게임 시작'):
     st.session_state.start = True
     st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
@@ -43,24 +43,31 @@ if not st.session_state.start:
     st.session_state.board[4][0] = "T"
     st.session_state.board[4][4] = "T"
     st.session_state.turn = "G"
-    st.session_state.click = None
+    st.session_state.click1 = None
+    st.session_state.click2 = None
+    st.session_state.count = 0
 
 else:
   # 차례 안내
   if st.session_state.turn=="G":
     st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
-  else:
-    st.title('바그 찰(Bagh-chal) 게임 - 호랑이 차례')
 
-  # 보드판 생성(위에서 한 것은 값의 저장용, 이것은 보이게 해주는 코드)
-  for i in range(5):
+    # 보드판 생성(위에서 한 것은 값의 저장용, 이것은 보이게 해주는 코드)
+    for i in range(5):
     cols = st.columns(5)
     for j in range(5):
       text = st.session_state.board[i][j] or " "
+      # 염소차례일 때 게임 진행
       if cols[j].button(text,key=f"{i}-{j}"):
-        st.session_state.click = (i,j)
-        if st.session_state.board[i][j] == " ":
+        st.session_state.click1 = (i,j)
+        if st.session_state.board[i][j] == " " and st.session_state.count < 21:
           st.session_state.board[i][j] = "G"
+          st.session_state.turn = "T"
+          st.session_state.count += 1
+        #elif st.session_state.board[i][j] == "G" and st.session_state.count == 20:
+          
         else:
-          st.title('유효하지 않은 움직임입니다!')
-        st.session_state.turn = "T"
+          st.toast('유효하지 않은 움직임입니다!')
+
+  else:
+    st.title('바그 찰(Bagh-chal) 게임 - 호랑이 차례')
