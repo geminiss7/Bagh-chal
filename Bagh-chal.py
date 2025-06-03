@@ -2,22 +2,22 @@ import streamlit as st
 
 st.title('바그 찰(Bagh-chal) 게임')
 
-if "boardgame" not in st.session_state:
-  st.session_state.boardgame = False
+if "start" not in st.session_state:
+  st.session_state.start = False
 
-if not st.session_state.boardgame:
+if not st.session_state.start:
   rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(G)', '룰-호랑이(T)'])
   rule_data = {
     '룰-호랑이(T)' : {
                   '말의_개수' :  '호랑이는 총 4개', 
                   '말의_위치' : '게임 시작 시 이미 보드 위에 배치되어 있다.',
-                  '플레이_방법과_승리조건' : '인접한 칸으로 이동하거나, 선을 따라 염소를 하나 건너뛰어 잡을 수 있다.'
-                  '염소를 최소 5마리 이상 잡거나, 끝까지 포위되지 않으면 호랑이가 승리한다.'},
+                  '플레이_방법과_승리조건' : '인접한 칸으로 이동하거나, 선을 따라 염소를 하나 건너뛰어 잡을 수 있다. 
+                  염소를 최소 5마리 이상 잡거나, 끝까지 포위되지 않으면 호랑이가 승리한다.'},
     '룰-염소(G)' : {
                   '말의_개수' : '염소는 총 20개', 
                   '말의_위치' : '차례대로 하나씩 보드에 배치한다.',
-                  '플레이_방법과_승리조건' : '모든 염소가 배치된 후에 배치된 염소들을 인접한 칸으로 한 칸씩만 이동할 수 있다. 이때 말을 뛰어넘거나 호랑이를 잡을 수 없다.'
-                                '호랑이의 움직임을 모두 막으면 염소가 승리한다.'}
+                  '플레이_방법과_승리조건' : '모든 염소가 배치된 후에 배치된 염소들을 인접한 칸으로 한 칸씩만 이동할 수 있다. 
+                  이때 말을 뛰어넘거나 호랑이를 잡을 수 없다. 호랑이의 움직임을 모두 막으면 염소가 승리한다.'}
   }
   
   if st.button('룰 설명'):
@@ -32,10 +32,10 @@ if not st.session_state.boardgame:
         st.write("게임은 염소가 먼저 시작합니다.")
   
   if st.button('게임 시작'):
-    st.session_state.boardgame = True
+    st.session_state.start = True
 
 else:
-  if "boardgame" in st.session_state:
+  if "boardgame" not in st.session_state:
     st.session_state.boardgame = [["" for i in range(5)] for j in range(5)]
     st.session_state.boardgame[0][0] = "T"
     st.session_state.boardgame[0][4] = "T"
