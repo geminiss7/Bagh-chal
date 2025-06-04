@@ -128,7 +128,7 @@ if not st.session_state.start:
 else:
   # 차례 안내 - 염소차례라면
   if st.session_state.turn=="G":
-    st.title('바그 찰(Bagh-chal) 게임 - 염소 차례')
+    st.title('바그 찰(Bagh-chal) 게임 - 염소')
 
     # 보드판 생성(위에서 한 것은 값의 저장용, 이것은 보이게 해주는 코드)
     for i in range(5):
@@ -164,7 +164,7 @@ else:
             st.toast('유효하지 않은 움직임입니다!')            # 아니면 이 문장을 출력해라(말이 잡힌 상태일 때 새로운 말을 만드려는 것을 막기 위해)
 
   else:
-    st.title('바그 찰(Bagh-chal) 게임 - 호랑이 차례')          # 호랑이 차례일 경우
+    st.title('바그 찰(Bagh-chal) 게임 - 호랑이')          # 호랑이 차례일 경우
     for i in range(5):                                        # 보드판 생성
       cols = st.columns(5)
       for j in range(5):
