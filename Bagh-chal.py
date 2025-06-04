@@ -157,7 +157,7 @@ else:
             # 옮길 위치를 정해야 하는 경우(옮길 곳의 좌표가 저장되어 있지 않고 그 좌표가 현재 염소의 좌표와 다르다면)  
             elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
               st.session_state.click2 = clicked_pos           # 옮길 위치의 좌표를 저장해라
-              Goat_move
+              Goat_move()
             else:
               st.toast('유효하지 않은 움직임입니다!')          # 처음 클릭과 두번째 클릭이 같은 경우 
           else:
@@ -182,7 +182,7 @@ else:
             # 옮길 위치를 정해야 하는 경우(옮길 곳의 좌표가 저장되어 있지 않고 그 좌표가 현재 호랑이의 좌표와 다르다면)
             elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
               st.session_state.click2 = clicked_pos           # 옮길 위치의 좌표를 저장하고
-              Tiger_move
+              Tiger_move()
           
             else:
               st.toast('유효하지 않은 움직임입니다!')         # 염소의 말이 있는 칸이나 빈 칸을 클릭했을 경우
