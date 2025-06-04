@@ -12,7 +12,6 @@ def Goat_move():
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
       st.session_state.turn = "T"                            # 그 이후 차례를 호랑이에게 넘긴다.
-      st.experimental_rerun()
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click2 = None
@@ -29,7 +28,6 @@ def Tiger_move():
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
       st.session_state.turn = "G"                           # 그 이후 차례를 염소에게 넘긴다.
-      st.experimental_rerun()
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click2 = None
@@ -47,7 +45,6 @@ def Tiger_move():
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
       st.session_state.turn = "G"                            # 그 이후 차례를 염소에게 넘긴다.
-      st.experimental_rerun()
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click2 = None
@@ -60,7 +57,6 @@ def check():
   if st.session_state.turn == "G" and st.session_state.catch >= 4:
     st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")
     st.session_state.start = False
-    st.experimental_rerun()
 
   # 염소 승리 조건: 호랑이가 이동 가능한 곳이 없을 때
   tiger_can_move = False
@@ -82,7 +78,6 @@ def check():
   if not tiger_can_move:
     st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
     st.session_state.start = False
-    st.experimental_rerun()
   
 
 # 게임의 시작 조건 정의
@@ -114,7 +109,7 @@ if not st.session_state.start:
       st.write(f"**말의 개수**: {말의_개수}")
       st.write(f"**말의 위치**: {말의_위치}")
       st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
-      st.write("게임은 염소가 먼저 시작합니다. 말을 움직일 경우엔 움직이고 싶은 말을 클릭하고 움직이고 싶은 위치로 움직이면 됩니다.")
+      st.write("게임은 염소가 먼저 시작합니다. 말을 움직일 경우엔 움직이고 싶은 말을 클릭하고 움직이고 싶은 위치를 [두번] 클릭하시면 됩니다.")
       
   # 게임 시작하고 보드게임 판, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수 생성, 저장
   if st.button('게임 시작'):
@@ -151,7 +146,6 @@ else:
             st.session_state.turn = "T"                      # 그 이후 차례를 호랑이에게 넘긴다.
             st.session_state.click1 = None                   # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
             st.session_state.click2 = None
-            st.experimental_rerun()  # 버튼 클릭 후 변화 즉시 반영
           
           # 선택한 좌표가 염소로 채워져있고 놓은 염소의 말이 20개인 경우
           elif st.session_state.board[i][j] == "G" and st.session_state.count == 20:
@@ -163,7 +157,7 @@ else:
             # 옮길 위치를 정해야 하는 경우(옮길 곳의 좌표가 저장되어 있지 않고 그 좌표가 현재 염소의 좌표와 다르다면)  
             elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
               st.session_state.click2 = clicked_pos           # 옮길 위치의 좌표를 저장해라
-              Goat_move()
+              Goat_move
             else:
               st.toast('유효하지 않은 움직임입니다!')          # 처음 클릭과 두번째 클릭이 같은 경우 
           else:
@@ -188,7 +182,7 @@ else:
             # 옮길 위치를 정해야 하는 경우(옮길 곳의 좌표가 저장되어 있지 않고 그 좌표가 현재 호랑이의 좌표와 다르다면)
             elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
               st.session_state.click2 = clicked_pos           # 옮길 위치의 좌표를 저장하고
-              Tiger_move()
+              Tiger_move
           
             else:
               st.toast('유효하지 않은 움직임입니다!')         # 염소의 말이 있는 칸이나 빈 칸을 클릭했을 경우
