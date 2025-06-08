@@ -201,6 +201,6 @@ else:
               st.toast('유효하지 않은 움직임입니다!')         # 염소의 말이 있는 칸이나 빈 칸을 클릭했을 경우
 
   st.sidebar.markdown("### 염소 상태 🐐")
-  st.sidebar.write("남은 염소:", st.session_state.goat_left)
+  st.sidebar.write("남은 염소:", st.session_state.count)
   st.sidebar.write("잡힌 염소:", st.session_state.catch)
   check()
