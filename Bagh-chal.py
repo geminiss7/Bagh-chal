@@ -66,7 +66,7 @@ def check():
   tiger_can_move = False
   for i in range(5):
     for j in range(5):
-      if st.session_state.board[i][j] == "T":                # 보드판에서 T를 찾음
+      if st.session_state.board[i][j] == "🐯":                # 보드판에서 T를 찾음
         for di in [-2, -1, 0, 1, 2]:                         # 호랑이가 가로로 움직일 수 있는 범위
           for dj in [-2, -1, 0, 1, 2]:                       # 호랑이가 세로로 움직일 수 있는 범위
             ni, nj = i + di, j + dj
