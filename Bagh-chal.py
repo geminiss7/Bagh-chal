@@ -137,9 +137,6 @@ if not st.session_state.start:
     st.session_state.board[4][4] = "🐯"
 
 else:
-  st.sidebar.markdown("### 염소 상태 🐐")
-  st.sidebar.write("남은 염소:", st.session_state.goat_left)
-  st.sidebar.write("잡힌 염소:", st.session_state.catch)
   
   # 차례 안내 - 염소차례라면
   if st.session_state.turn=="G":
