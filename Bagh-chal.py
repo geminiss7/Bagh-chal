@@ -74,13 +74,16 @@ def check():
               if abs(di) <= 1 and abs(dj) <= 1:              # 호랑이가 움직일 칸의 수가 상하좌우로 한칸일 때
                 if st.session_state.board[ni][nj] == "":     # 칸이 비어있다면 움직일 수 있다.
                   tiger_can_move = True
+                  break
                 else:                                        # 아니라면 움직일 수 없다.
                   tiger_can_move = False
               elif (abs(di) == 2 and dj ==0) or (di == 0 and abs(dj) == 2) or (abs(di) == 2 and abs(dj) == 2): # 호랑이가 염소를 잡으려 할 때
                 if st.session_state.board[ni][nj] == "":     # 호랑이가 움직일 칸이 비어있다면 움직일 수 있다.
                   tiger_can_move = True
+                  break
                 else:                                        # 아니라면 움직일 수 없다.
                   tiger_can_move = False
+
               
   if not tiger_can_move:                                     # 만약 호랑이가 움직일 수 없다면 염소가 승리한다.
     st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
