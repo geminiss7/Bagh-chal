@@ -8,7 +8,7 @@ def Goat_move():
   if (abs(i - m) == 1 and j == n) or (i == m and abs(j - n) == 1) or (abs(i - m) == 1 and abs(j - n) == 1):
     if st.session_state.board[m][n] == "":                   # 이동하려는 칸이 비어있다면
       st.session_state.board[i][j] = ""                      # 염소가 처음에 있던 곳을 비우고
-      st.session_state.board[m][n] = "G"                     # 염소를 넣는다.
+      st.session_state.board[m][n] = "🐐"                     # 염소를 넣는다.
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
       st.session_state.turn = "T"                            # 그 이후 차례를 호랑이에게 넘긴다.
@@ -24,7 +24,7 @@ def Tiger_move():
   # 현재 있는 칸에서 상하좌우, 대각선으로 한칸인 경우에서
   if (abs(i - m) == 1 and j == n) or (i == m and abs(j - n) == 1) or (abs(i - m) == 1 and abs(j - n) == 1):
     if st.session_state.board[m][n] == "":                   # 이동하려는 칸이 비어있다면
-      st.session_state.board[m][n] = "T"                     # 호랑이를 넣고
+      st.session_state.board[m][n] = "🐯"                     # 호랑이를 넣고
       st.session_state.board[i][j] = ""                      # 호랑이가 처음에 있던 곳을 비운다.
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
@@ -38,9 +38,9 @@ def Tiger_move():
   elif (abs(i - m) == 2 and j == n) or (i == m and abs(j - n) == 2) or (abs(i - m) == 2 and abs(j - n) == 2):
     
     # 이동하려는 칸이 비어있고, 이동하려는 중간 칸에 염소가 있을 때
-    if st.session_state.board[m][n] == "" and st.session_state.board[(i+m)//2][(j+n)//2] == "G":
+    if st.session_state.board[m][n] == "" and st.session_state.board[(i+m)//2][(j+n)//2] == "🐐":
       st.session_state.board[i][j] = ""                      # 호랑이가 있던 칸을 비우고
-      st.session_state.board[m][n] = "T"                     # 이동하려는 칸을 T로 채운다.
+      st.session_state.board[m][n] = "🐯"                     # 이동하려는 칸을 T로 채운다.
       st.session_state.board[(i+m)//2][(j+n)//2] = ""        # 염소가 있는 칸을 비우고
       st.session_state.catch += 1                            # 잡은 염소의 수를 1 올려라.
       st.toast(f"잡은 염소의 수 {st.session_state.catch}")   # 그리고 알려라.
@@ -66,20 +66,23 @@ def check():
   tiger_can_move = False
   for i in range(5):
     for j in range(5):
-      if st.session_state.board[i][j] == "T":
-        for di in [-2, -1, 0, 1, 2]:
-          for dj in [-2, -1, 0, 1, 2]:
+      if st.session_state.board[i][j] == "T":                # 보드판에서 T를 찾음
+        for di in [-2, -1, 0, 1, 2]:                         # 호랑이가 가로로 움직일 수 있는 범위
+          for dj in [-2, -1, 0, 1, 2]:                       # 호랑이가 세로로 움직일 수 있는 범위
             ni, nj = i + di, j + dj
-            if 0 <= ni < 5 and 0 <= nj < 5:
-              # 인접하거나 점프 가능하고, 목적지가 비어있고, 점프 시 중간에 염소 있는지 확인
-              if st.session_state.board[ni][nj] == "":
-                if abs(di) <= 1 and abs(dj) <= 1:
+            if 0 <= ni < 5 and 0 <= nj < 5:                  # 움직일 수 있는 범위의 값을 더한 뒤의 좌표가 아직 보드판 위의 좌표이고
+              if abs(di) <= 1 and abs(dj) <= 1:              # 호랑이가 움직일 칸의 수가 상하좌우로 한칸일 때
+                if st.session_state.board[ni][nj] == "":     # 칸이 비어있다면 움직일 수 있다.
                   tiger_can_move = True
-                elif abs(di) == 2 or abs(dj) == 2:
-                  mid_i, mid_j = (i + ni)//2, (j + nj)//2
-                  if st.session_state.board[mid_i][mid_j] == "G":
-                    tiger_can_move = True
-  if tiger_can_move:
+                else:                                        # 아니라면 움직일 수 없다.
+                  tiger_can_move = False
+              elif (abs(di) == 2 and dj ==0) or (di == 0 and abs(dj) == 2) or (abs(di) == 2 and abs(dj) == 2): # 호랑이가 염소를 잡으려 할 때
+                if st.session_state.board[ni][nj] == "":     # 호랑이가 움직일 칸이 비어있다면 움직일 수 있다.
+                  tiger_can_move = True
+                else:                                        # 아니라면 움직일 수 없다.
+                  tiger_can_move = False
+              
+  if not tiger_can_move:                                     # 만약 호랑이가 움직일 수 없다면 염소가 승리한다.
     st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
     st.session_state.start = False
   
@@ -92,7 +95,7 @@ if "start" not in st.session_state:
 if not st.session_state.start:
   # 시작 화면
   st.title('바그 찰(Bagh-chal) 게임')
-  rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(G)', '룰-호랑이(T)'])
+  rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(G)', '룰-호랑이(🐯)'])
   rule_data = {
     '룰-호랑이(T)' : {
                   '말의_개수' :  '호랑이는 총 4개', 
@@ -124,10 +127,10 @@ if not st.session_state.start:
     st.session_state.count = 0
     st.session_state.catch = 0
     st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
-    st.session_state.board[0][0] = "T"
-    st.session_state.board[0][4] = "T"
-    st.session_state.board[4][0] = "T"
-    st.session_state.board[4][4] = "T"
+    st.session_state.board[0][0] = "🐯"
+    st.session_state.board[0][4] = "🐯"
+    st.session_state.board[4][0] = "🐯"
+    st.session_state.board[4][4] = "🐯"
 
 else:
   # 차례 안내 - 염소차례라면
@@ -138,14 +141,14 @@ else:
     for i in range(5):
       cols = st.columns(5)
       for j in range(5):
-        text = st.session_state.board[i][j] or " "
+        text = st.session_state.board[i][j] or ""
         
         # 버튼이 눌렸는데
         if cols[j].button(text,key=f"{i}-{j}"):
           # 선택한 좌표가 비어있고, 판 위에 놓인 염소의 수가 20개 미만인 경우
           if st.session_state.board[i][j] == "" and st.session_state.count < 20:
             st.session_state.click1 = (i,j)                  # 선택된 좌표를 저장하고
-            st.session_state.board[i][j] = "G"               # 선택한 좌표에 값을 채워넣고
+            st.session_state.board[i][j] = "🐐"               # 선택한 좌표에 값을 채워넣고
             st.session_state.count += 1                      # 놓은 염소의 수를 하나 늘린다.
             st.toast(f"놓은 말의 수 : {st.session_state.count}")
             st.session_state.turn = "T"                      # 그 이후 차례를 호랑이에게 넘긴다.
@@ -178,7 +181,7 @@ else:
             clicked_pos = (i, j)
 
             if st.session_state.click1 is None:               # 호랑이를 선택해야 하는 경우(옮길 말의 좌표가 저장되어있지 않다면)
-              if st.session_state.board[i][j] == "T":         # 선택한 좌표가 호랑이로 채워져있을 때
+              if st.session_state.board[i][j] == "🐯":         # 선택한 좌표가 호랑이로 채워져있을 때
                 st.session_state.click1 = clicked_pos         # 옮길 호랑이의 좌표를 저장하고
                 st.toast("이동할 위치를 선택하세요.")          # 이 문장을 출력해라
               else:
