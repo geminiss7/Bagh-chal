@@ -1,4 +1,4 @@
-78import streamlit as st
+import streamlit as st
 
 def Goat_move():
   i, j = st.session_state.click1
