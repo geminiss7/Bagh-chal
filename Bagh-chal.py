@@ -60,7 +60,6 @@ def Tiger_move():
 def check():
   if st.session_state.turn == "G" and st.session_state.catch >= 4:
     st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")
-    st.session_state.start = False
 
   # 염소 승리 조건: 호랑이가 이동 가능한 곳이 없을 때
   tiger_can_move = False
@@ -87,7 +86,6 @@ def check():
               
   if not tiger_can_move:                                     # 만약 호랑이가 움직일 수 없다면 염소가 승리한다.
     st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
-    st.session_state.start = False
   
 
 # 게임의 시작 조건 정의
