@@ -61,7 +61,7 @@ def check():
   if st.session_state.turn == "G" and st.session_state.catch >= 4: # 염소를 4개 잡았을 때 게임을 끝낸다.
     st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")
 
-      cannot_move_count = 0                                        # 움직일 수 없는 호랑이 수
+  cannot_move_count = 0                                            # 움직일 수 없는 호랑이 수
 
     for i in range(5):
       for j in range(5):
@@ -200,4 +200,7 @@ else:
             else:
               st.toast('유효하지 않은 움직임입니다!')         # 염소의 말이 있는 칸이나 빈 칸을 클릭했을 경우
 
+  st.sidebar.markdown("### 염소 상태 🐐")
+  st.sidebar.write("남은 염소:", st.session_state.goat_left)
+  st.sidebar.write("잡힌 염소:", st.session_state.catch)
   check()
