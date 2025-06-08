@@ -58,14 +58,13 @@ def Tiger_move():
     st.session_state.click2 = None
 
 def check():
-  if st.session_state.turn == "G" and st.session_state.catch >= 4:
+  if st.session_state.turn == "G" and st.session_state.catch >= 4: # 염소를 4개 잡았을 때 게임을 끝낸다.
     st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")
 
-  # 염소 승리 조건: 호랑이가 이동 가능한 곳이 없을 때
   tiger_can_move = False
   for i in range(5):
     for j in range(5):
-      if st.session_state.board[i][j] == "🐯":                # 보드판에서 T를 찾음
+      if st.session_state.board[i][j] == "🐯":               # 보드판에서 호랑이를 찾음
         for di in [-2, -1, 0, 1, 2]:                         # 호랑이가 가로로 움직일 수 있는 범위
           for dj in [-2, -1, 0, 1, 2]:                       # 호랑이가 세로로 움직일 수 있는 범위
             ni, nj = i + di, j + dj
@@ -91,7 +90,9 @@ def check():
     # 반복적으로 break를 하는 이유: 한번에 한개의 반복문만을 탈출함
     
   if not tiger_can_move:                                     # 만약 호랑이가 움직일 수 없다면 염소가 승리한다.
-    st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
+    st.session_state.tiger += 1
+    if st.session_state.tiger ==4:
+      st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
   
 
 # 게임의 시작 조건 정의
@@ -125,7 +126,7 @@ if not st.session_state.start:
       st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
       st.write("게임은 염소가 먼저 시작합니다. 말을 움직일 경우엔 움직이고 싶은 말을 클릭하고 움직이고 싶은 위치를 [두번] 클릭하시면 됩니다.")
       
-  # 게임 시작하고 보드게임 판, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수 생성, 저장
+  # 게임 시작하고 보드게임 판, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수, 움직일 수 없는 호랑이의 수를 저장하는 변수 생성, 저장
   if st.button('게임 시작'):
     st.session_state.start = True
     st.session_state.turn = "G"
@@ -133,6 +134,7 @@ if not st.session_state.start:
     st.session_state.click2 = None
     st.session_state.count = 0
     st.session_state.catch = 0
+    st.session_state.tiger = 0
     st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
     st.session_state.board[0][0] = "🐯"
     st.session_state.board[0][4] = "🐯"
