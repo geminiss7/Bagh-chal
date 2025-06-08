@@ -78,14 +78,12 @@ def check():
                 if st.session_state.board[ni][nj] == "" and st.session_state.board[mid_i][mid_j] == "🐐":     # 호랑이가 움직일 칸이 비어있다면 움직일 수 있다.
                   tiger_can_move = True
                   break                                      # 움직일 수 있다면 이 반복문을 탈출한다.
+            if tiger_can_move:
+              break                                            # 움직일 수 있다면 이 반복문을 탈출한다.
           if tiger_can_move:
-            break                                            # 움직일 수 있다면 이 반복문을 탈출한다.
-        if tiger_can_move:
-          break                                              # 움직일 수 있다면 이 반복문을 탈출한다.
+            break                                              # 움직일 수 있다면 이 반복문을 탈출한다.
     if tiger_can_move:
       break                                                  # 움직일 수 있다면 이 반복문을 탈출한다.
-  if tiger_can_move:
-    break                                                    # 움직일 수 있다면 이 반복문을 탈출한다.
 
     # 반복적으로 break를 하는 이유: 한번에 한개의 반복문만을 탈출함
     
