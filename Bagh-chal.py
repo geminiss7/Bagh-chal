@@ -84,11 +84,13 @@ def check():
               break                                                                                             # 움직일 수 있으면 이 반복문을 탈출한다.
         if not tiger_can_move:
           cannot_move_count += 1                                                                                # 이 호랑이는 못 움직임
-          st.session_state.move -= 1
+          
 
     if cannot_move_count == 4:                                                                                    # 4개가 전부 못 움직이면 염소가 승리한다.
       st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
       st.session_state.start = False
+    else:
+      st.session_state.move = cannot_move_count
   
 
 # 게임의 시작 조건 정의
