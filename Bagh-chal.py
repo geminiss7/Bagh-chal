@@ -81,13 +81,14 @@ def check():
                       tiger_can_move = True                                                                       # 움직일 수 있다.
                       break                                                                                       # 움직일 수 있으면 이 반복문을 탈출한다.
             if tiger_can_move:
-                break                                                                                             # 움직일 수 있으면 이 반복문을 탈출한다.
+              break                                                                                             # 움직일 수 있으면 이 반복문을 탈출한다.
         if not tiger_can_move:
-            cannot_move_count += 1                                                                                # 이 호랑이는 못 움직임
+          cannot_move_count += 1                                                                                # 이 호랑이는 못 움직임
+          st.session_state.move -= 1
 
     if cannot_move_count == 4:                                                                                    # 4개가 전부 못 움직이면 염소가 승리한다.
-        st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
-        st.session_state.start = False
+      st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
+      st.session_state.start = False
   
 
 # 게임의 시작 조건 정의
@@ -129,7 +130,7 @@ if not st.session_state.start:
     st.session_state.click2 = None
     st.session_state.count = 0
     st.session_state.catch = 0
-    st.session_state.tiger = 0
+    st.session_state.move = 4
     st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
     st.session_state.board[0][0] = "🐯"
     st.session_state.board[0][4] = "🐯"
@@ -201,7 +202,7 @@ else:
               st.toast('유효하지 않은 움직임입니다!')         # 염소의 말이 있는 칸이나 빈 칸을 클릭했을 경우
 
   st.sidebar.markdown("### 염소 상태 🐐")
-  st.sidebar.write("남은 염소:", st.session_state.count)
+  st.sidebar.write("놓은 염소:", st.session_state.count)
   st.sidebar.write("잡힌 염소:", st.session_state.catch)
-  st,sidebar.write("움직일 수 없는 호랑이:", cannot_move_count)
+  st,sidebar.write("움직일 수 없는 호랑이:", st.session_state.move)
   check()
