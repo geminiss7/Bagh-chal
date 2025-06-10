@@ -203,4 +203,5 @@ else:
   st.sidebar.markdown("### 염소 상태 🐐")
   st.sidebar.write("남은 염소:", st.session_state.count)
   st.sidebar.write("잡힌 염소:", st.session_state.catch)
+  st,sidebar.write("움직일 수 없는 호랑이:", cannot_move_count)
   check()
