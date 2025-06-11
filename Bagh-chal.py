@@ -76,8 +76,7 @@ def check():
                     tiger_can_move = True
                     break                                         # 움직일 수 있으면 이 반복문을 탈출한다.
                 elif (abs(di) == 2 and dj == 0) or (di == 0 and abs(dj) == 2) or (abs(di) == 2 and abs(dj) == 2): # 염소를 먹으려고 할 때
-                  mid_i, mid_j = (i + ni) // 2, (j + nj) // 2
-                  if (st.session_state.board[ni][nj] == "" and st.session_state.board[mid_i][mid_j] == "🐐"):   # 염소가 중간에 있고 움직이려는 칸이 비었다면
+                  if (st.session_state.board[ni][nj] == "" and st.session_state.board[(i+ni)//2][(j+nj)//2] == "🐐"):   # 염소가 중간에 있고 움직이려는 칸이 비었다면
                     tiger_can_move = True                                                                       # 움직일 수 있다.
                     break                                                                                       # 움직일 수 있으면 이 반복문을 탈출한다.
             if tiger_can_move:
@@ -251,3 +250,7 @@ else:
   st.sidebar.markdown("### 염소 상태 🐐")
   st.sidebar.write("놓은 염소:", st.session_state.count)
   st.sidebar.write("잡힌 염소:", st.session_state.catch)
+  st.sidebar.markdown("### 🗺️ 현재 보드 상태")
+  for r in range(5):
+    row_str = " ".join([st.session_state.board[r][c] if st.session_state.board[r][c] else "빈칸" for c in range(5)])
+    st.sidebar.text(f"행 {r}: {row_str}")
