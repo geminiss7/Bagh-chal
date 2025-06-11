@@ -90,6 +90,7 @@ def check():
 
     if cannot_move_count == 4:                                                                                    # 4개가 전부 못 움직이면 염소가 승리한다.
       st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
+      st.session_state.start = False
       st.stop()
     
   
