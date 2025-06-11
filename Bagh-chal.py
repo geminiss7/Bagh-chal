@@ -89,8 +89,7 @@ def check():
     if cannot_move_count == 4:                                                                                    # 4개가 전부 못 움직이면 염소가 승리한다.
       st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
       st.session_state.start = False
-    else:
-      st.session_state.move = (4 - cannot_move_count)
+    
   
 
 # 게임의 시작 조건 정의
@@ -158,7 +157,6 @@ else:
             st.session_state.click1 = (i,j)                  # 선택된 좌표를 저장하고
             st.session_state.board[i][j] = "🐐"               # 선택한 좌표에 값을 채워넣고
             st.session_state.count += 1                      # 놓은 염소의 수를 하나 늘린다.
-            st.toast(f"놓은 말의 수 : {st.session_state.count}")
             st.session_state.turn = "T"                      # 그 이후 차례를 호랑이에게 넘긴다.
             st.session_state.click1 = None                   # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
             st.session_state.click2 = None
@@ -206,5 +204,4 @@ else:
   st.sidebar.markdown("### 염소 상태 🐐")
   st.sidebar.write("놓은 염소:", st.session_state.count)
   st.sidebar.write("잡힌 염소:", st.session_state.catch)
-  st.sidebar.write("움직일 수 있는 호랑이:", st.session_state.move)
   check()
