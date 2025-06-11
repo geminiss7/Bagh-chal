@@ -65,11 +65,11 @@ def Tiger_move():
     check()
 
 def check():
-  cannot_move_count = 0                                            # 움직일 수 없는 호랑이 수
-  if st.session_state.turn == "G" and st.session_state.catch >= 4: # 염소를 4개 잡았을 때 게임을 끝낸다.
-    st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")
+  if st.session_state.catch == 4:
+    st.session_state.start = False
 
-  else:
+  else: 
+    cannot_move_count = 0                                         # 움직일 수 없는 호랑이 수
     for i in range(5):
       for j in range(5):
         if st.session_state.board[i][j] == "🐯":                  # 호랑이의 좌표를 찾음
@@ -93,19 +93,32 @@ def check():
           cannot_move_count += 1                                                                                # 이 호랑이는 못 움직임
           
 
-    if cannot_move_count == 4:                                                                                    # 4개가 전부 못 움직이면 염소가 승리한다.
-      st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
+    if cannot_move_count == 0:
+      st.session_state.move = 4
+    elif cannot_move_count == 1:
+      st.session_state.move = 3
+    elif cannot_move_count == 2:
+      st.session_state.move = 2
+    elif cannot_move_count == 3:
+      st.session_state.move = 1
+    else:                                                                                                       # 4개가 전부 못 움직이면 염소가 승리한다.
+      st.session_state.move = 0
       st.session_state.start = False
       st.stop()
     
   
 
-# 게임의 시작 조건 정의
-if "start" not in st.session_state:
-  st.session_state.start = False
+# 게임의 시작 조건, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수, 움직일 수 없는 호랑이의 수를 저장하는 변수 생성, 저장
+st.session_state.start = False
+st.session_state.turn = "G"
+st.session_state.click1 = None
+st.session_state.click2 = None
+st.session_state.count = 0
+st.session_state.catch = 0
+st.session_state.move = 4
 
 # 게임이 시작하기 전 화면에서 실행
-if not st.session_state.start:
+if st.session_state.start == False and st.session_state.catch != 4 and st.session_state.move != 0:
   # 시작 화면
   st.title('바그 찰(Bagh-chal) 게임')
   rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(🐐)', '룰-호랑이(🐯)'])
@@ -131,20 +144,39 @@ if not st.session_state.start:
       st.write(f"**플레이 방법과 승리조건**: {플레이_방법과_승리조건}")
       st.write("게임은 염소가 먼저 시작합니다. 말을 움직일 경우엔 움직이고 싶은 말을 클릭하고 움직이고 싶은 위치를 [두번] 클릭하시면 됩니다.")
       
-  # 게임 시작하고 보드게임 판, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수, 움직일 수 없는 호랑이의 수를 저장하는 변수 생성, 저장
+  # 게임 시작하고 보드게임 판 생성, 저장
   if st.button('게임 시작'):
     st.session_state.start = True
-    st.session_state.turn = "G"
-    st.session_state.click1 = None
-    st.session_state.click2 = None
-    st.session_state.count = 0
-    st.session_state.catch = 0
-    st.session_state.move = 4
     st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
     st.session_state.board[0][0] = "🐯"
     st.session_state.board[0][4] = "🐯"
     st.session_state.board[4][0] = "🐯"
     st.session_state.board[4][4] = "🐯"
+
+elif st.session_state.start and st.session_state.catch == 4 and st.session_state.move != 0: # 게임이 끝나고, 염소가 이긴 상태라면
+  st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")                                    # 이 문구를 띄운다.
+  if st.button('처음 화면으로'):                                                               # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
+    st.session_state.catch = 0
+    st.session_state.move = 0
+  elif st.button('한판 더 플레이'):                                                            # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
+    st.session_state.start = False
+    st.session_state.catch = 0
+    st.session_state.move = 0
+  else:
+    st.title('게임이 끝났습니다. 아래의 버튼 중 하나를 눌러주십시오.')
+
+  
+elif st.session_state.start and st.session_state.catch != 4 and st.session_state.move == 0: # 게임이 끝나고, 호랑이가 이긴 상태라면
+  st.success("호랑이가 포위당했습니다! 🐐 염소 승리!")                                             # 이 문구를 띄운다.
+  if st.button('처음 화면으로'):                                                               # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
+    st.session_state.catch = 0
+    st.session_state.move = 0
+  elif st.button('한판 더 플레이'):                                                            # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
+    st.session_state.start = False
+    st.session_state.catch = 0
+    st.session_state.move = 0
+  else:
+    st.title('게임이 끝났습니다. 아래의 버튼 중 하나를 눌러주십시오.')
 
 else:
   
