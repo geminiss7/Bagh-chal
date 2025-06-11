@@ -11,6 +11,7 @@ def Goat_move():
       st.session_state.board[m][n] = "🐐"                     # 염소를 넣는다.
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
+      check()
       st.session_state.turn = "T"                            # 그 이후 차례를 호랑이에게 넘긴다.
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
@@ -250,4 +251,3 @@ else:
   st.sidebar.markdown("### 염소 상태 🐐")
   st.sidebar.write("놓은 염소:", st.session_state.count)
   st.sidebar.write("잡힌 염소:", st.session_state.catch)
-  check()
