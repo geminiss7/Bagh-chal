@@ -106,10 +106,10 @@ def check():
   
 
 # 게임의 시작 조건, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수, 움직일 수 없는 호랑이의 수를 저장하는 변수 생성, 저장
-if "start" not in st.session_state:
+if "start" not in st.session_state:           # 게임의 시작 조건 저장
   st.session_state.start = False
 
-if "turn" not in st.session_state:            # 게임의 시작조건 저장
+if "turn" not in st.session_state:            # 게임의 순서 저장
     st.session_state.turn = "G"
   
 if "click1" not in st.session_state:          # 게임의 처음 클릭 저장
@@ -129,7 +129,7 @@ if "move" not in st.session_state:            # 움직일 수 있는 호랑이 �
 
 
 # 게임이 시작하기 전 화면에서 실행
-if st.session_state.start == False:
+if st.session_state.start == False and st.session_state.catch != 4 and st.session_state.move != 0:
   # 시작 화면
   st.title('바그 찰(Bagh-chal) 게임')
   rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(🐐)', '룰-호랑이(🐯)'])
