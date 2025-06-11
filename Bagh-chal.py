@@ -16,6 +16,7 @@ def Goat_move():
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click1 = None
       st.session_state.click2 = None
+      check()
 
 def Tiger_move():
   i, j = st.session_state.click1
@@ -56,6 +57,7 @@ def Tiger_move():
     st.toast('유효하지 않은 움직임입니다!')                  # 아니라면 이 문장을 출력한다.
     st.session_state.click1 = None
     st.session_state.click2 = None
+    check()
 
 def check():
   cannot_move_count = 0                                            # 움직일 수 없는 호랑이 수
@@ -76,10 +78,10 @@ def check():
                     tiger_can_move = True
                     break                                         # 움직일 수 있으면 이 반복문을 탈출한다.
                 elif (abs(di) == 2 and dj == 0) or (di == 0 and abs(dj) == 2) or (abs(di) == 2 and abs(dj) == 2): # 염소를 먹으려고 할 때
-                    mid_i, mid_j = (i + ni) // 2, (j + nj) // 2
-                    if (st.session_state.board[ni][nj] == "" and st.session_state.board[mid_i][mid_j] == "🐐"):   # 염소가 중간에 있고 움직이려는 칸이 비었다면
-                      tiger_can_move = True                                                                       # 움직일 수 있다.
-                      break                                                                                       # 움직일 수 있으면 이 반복문을 탈출한다.
+                  mid_i, mid_j = (i + ni) // 2, (j + nj) // 2
+                  if (st.session_state.board[ni][nj] == "" and st.session_state.board[mid_i][mid_j] == "🐐"):   # 염소가 중간에 있고 움직이려는 칸이 비었다면
+                    tiger_can_move = True                                                                       # 움직일 수 있다.
+                    break                                                                                       # 움직일 수 있으면 이 반복문을 탈출한다.
             if tiger_can_move:
               break                                                                                             # 움직일 수 있으면 이 반복문을 탈출한다.
         if not tiger_can_move:
@@ -89,6 +91,7 @@ def check():
     if cannot_move_count == 4:                                                                                    # 4개가 전부 못 움직이면 염소가 승리한다.
       st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
       st.session_state.start = False
+      st.stop()
     
   
 
@@ -204,4 +207,4 @@ else:
   st.sidebar.markdown("### 염소 상태 🐐")
   st.sidebar.write("놓은 염소:", st.session_state.count)
   st.sidebar.write("잡힌 염소:", st.session_state.catch)
-  check()
+  
