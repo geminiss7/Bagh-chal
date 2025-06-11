@@ -81,8 +81,8 @@ def check():
                     break                                                                                       # 움직일 수 있으면 이 반복문을 탈출한다.
             if tiger_can_move:
               break                                                                                             # 움직일 수 있으면 이 반복문을 탈출한다.
-        if not tiger_can_move:
-          cannot_move_count += 1                                                                                # 이 호랑이는 못 움직임
+          if not tiger_can_move:
+            cannot_move_count += 1                                                                                # 이 호랑이는 못 움직임
         
     if cannot_move_count == 0:
       st.session_state.move = 4
