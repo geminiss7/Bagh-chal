@@ -158,7 +158,7 @@ if st.session_state.start == False and st.session_state.catch != 4 and st.sessio
   # 게임 시작하고 보드게임 판 생성, 저장
   if st.button('게임 시작'):
     st.session_state.start = True
-    st.session_state.count = 0                                                                       # 게임을 다시 사작할 경우에 대비
+    st.session_state.count = 0                                                                       # 게임을 다시 시작할 경우에 대비
     st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
     st.session_state.board[0][0] = "🐯"
     st.session_state.board[0][4] = "🐯"
@@ -174,6 +174,7 @@ elif st.session_state.start == False and st.session_state.catch == 4 and st.sess
     st.session_state.move = 4
   if st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
     st.session_state.start = True
+    st.session_state.count = 0                                                                         
     st.session_state.catch = 0
     st.session_state.move = 4
 
@@ -187,6 +188,7 @@ elif st.session_state.start == False and st.session_state.catch != 4 and st.sess
     st.session_state.move = 4
   if st.button('한판 더 플레이'):                                                                       # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
     st.session_state.start = True
+    st.session_state.count = 0                                                                       
     st.session_state.catch = 0
     st.session_state.move = 4
   
