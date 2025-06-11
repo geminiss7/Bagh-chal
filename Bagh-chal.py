@@ -71,7 +71,7 @@ def check():
               ni, nj = i + di, j + dj                             # 움직인 새로운 좌표
               if 0 <= ni < 5 and 0 <= nj < 5:                     # 움직인 새로운 좌표가 보드게임 안에 있고
                 if abs(di) <= 1 and abs(dj) <= 1:                 # 상하좌우로 한칸만 움직일 때
-                  if st.session_state.board[ni][nj] == " ":       # 움직인 좌표가 비었다면 움직일 수 있다.
+                  if st.session_state.board[ni][nj] == "":       # 움직인 좌표가 비었다면 움직일 수 있다.
                     tiger_can_move = True
                     break                                         # 움직일 수 있으면 이 반복문을 탈출한다.
                 elif (abs(di) == 2 and dj == 0) or (di == 0 and abs(dj) == 2) or (abs(di) == 2 and abs(dj) == 2):        # 염소를 먹으려고 할 때
@@ -157,17 +157,17 @@ if st.session_state.start == False and st.session_state.catch != 4 and st.sessio
     st.session_state.board[4][0] = "🐯"
     st.session_state.board[4][4] = "🐯"
 
-elif st.session_state.start == False and st.session_state.catch == 4 and st.session_state.move != 0:    # 게임이 끝나고, 호랑이가 이긴 상태라면
-  st.title('게임이 끝났습니다.')                                                                         # 이 문구를 띄운다.
+elif st.session_state.start == False and st.session_state.catch == 4 and st.session_state.move != 0:   # 게임이 끝나고, 호랑이가 이긴 상태라면
+  st.title('게임이 끝났습니다.')                                                                        # 이 문구를 띄운다.
   st.title('아래의 버튼 중 하나를 눌러주십시오.')
-  st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")                                             # 이 문구를 띄운다.
+  st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")
   if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
     st.session_state.catch = 0
     st.session_state.move = 4
 
   
-elif st.session_state.start == False and st.session_state.catch != 4 and st.session_state.move == 0: # 게임이 끝나고, 염가 이긴 상태라면
-  st.title('게임이 끝났습니다.')                                                                         # 이 문구를 띄운다.
+elif st.session_state.start == False and st.session_state.catch != 4 and st.session_state.move == 0: # 게임이 끝나고, 염소가 이긴 상태라면
+  st.title('게임이 끝났습니다.')                                                                       # 이 문구를 띄운다.
   st.title('아래의 버튼을 눌러주십시오.')
   st.success("호랑이가 포위당했습니다! 🐐 염소 승리!")
   if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
