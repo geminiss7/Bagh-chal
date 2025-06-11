@@ -115,7 +115,7 @@ st.session_state.catch = 0
 st.session_state.move = 4
 
 # 게임이 시작하기 전 화면에서 실행
-if st.session_state.start == False and st.session_state.catch != 4 and st.session_state.move != 0:
+if st.session_state.start == False:
   # 시작 화면
   st.title('바그 찰(Bagh-chal) 게임')
   rule = st.selectbox('알고 싶은 것을 골라주세요 : ', ['룰-염소(🐐)', '룰-호랑이(🐯)'])
