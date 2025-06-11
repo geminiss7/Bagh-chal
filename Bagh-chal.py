@@ -90,8 +90,7 @@ def check():
               break                                                                                             # 움직일 수 있으면 이 반복문을 탈출한다.
         if not tiger_can_move:
           cannot_move_count += 1                                                                                # 이 호랑이는 못 움직임
-          
-
+        
     if cannot_move_count == 0:
       st.session_state.move = 4
     elif cannot_move_count == 1:
@@ -175,10 +174,10 @@ elif st.session_state.start == False and st.session_state.catch != 4 and st.sess
     st.session_state.board[0][4] = "🐯"
     st.session_state.board[4][0] = "🐯"
     st.session_state.board[4][4] = "🐯"
+    st.rerun()
 
 
 else:
-  
   # 차례 안내 - 염소차례라면
   if st.session_state.turn=="G":
     st.title('바그 찰(Bagh-chal) 게임 - 염소')
