@@ -88,30 +88,17 @@ def check():
               break
       if st.session_state.move == 0:
         break
-    
   
 
 # 게임의 시작 조건, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수, 움직일 수 없는 호랑이의 수를 저장하는 변수 생성, 저장
 if "start" not in st.session_state:           # 게임의 시작 조건 저장
   st.session_state.start = False
-
-if "turn" not in st.session_state:            # 게임의 순서 저장
-    st.session_state.turn = "G"
-  
-if "click1" not in st.session_state:          # 게임의 처음 클릭 저장
-    st.session_state.click1 = None
-  
-if "click2" not in st.session_state:          # 게임의 두번째 클릭 저장
-    st.session_state.click2 = None
-
-if "count" not in st.session_state:           # 놓은 염소의 수 저장
-    st.session_state.count = 0
-
-if "catch" not in st.session_state:           # 잡힌 염소의 수 저장
-    st.session_state.catch = 0
-
-if "move" not in st.session_state:            # 움직일 수 있는 호랑이 수 저장
-    st.session_state.move = 4
+  st.session_state.turn = "G"
+  st.session_state.click1 = None
+  st.session_state.click2 = None
+  st.session_state.count = 0
+  st.session_state.catch = 0
+  st.session_state.move = 4
 
 
 # 게임이 시작하기 전 화면에서 실행
@@ -198,7 +185,7 @@ else:
             clicked_pos = (i, j)
             if st.session_state.click1 is None:               # 염소를 선택해야 하는 경우(옮길 말의 좌표가 저장되어있지 않다면)
               st.session_state.click1 = clicked_pos           # 옮길 말의 좌표를 저장해라
-              st.toast("이동할 위치를 선택하세요.")            # 그 이후에 이 문장을 출력해라
+              st.toast("이동할 위치를 선택하세요.")             # 그 이후에 이 문장을 출력해라
               
             # 옮길 위치를 정해야 하는 경우(옮길 곳의 좌표가 저장되어 있지 않고 그 좌표가 현재 염소의 좌표와 다르다면)  
             elif st.session_state.click2 is None and clicked_pos != st.session_state.click1:
