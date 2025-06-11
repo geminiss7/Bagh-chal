@@ -170,11 +170,11 @@ elif st.session_state.start == False and st.session_state.catch == 4 and st.sess
   st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")                                             # 이 문구를 띄운다.
   if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
     st.session_state.catch = 0
-    st.session_state.move = 0
+    st.session_state.move = 4
   if st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
-    st.session_state.start = False
+    st.session_state.start = True
     st.session_state.catch = 0
-    st.session_state.move = 0
+    st.session_state.move = 4
 
   
 elif st.session_state.start == False and st.session_state.catch != 4 and st.session_state.move == 0: # 게임이 끝나고, 호랑이가 이긴 상태라면
@@ -183,11 +183,11 @@ elif st.session_state.start == False and st.session_state.catch != 4 and st.sess
   st.success("호랑이가 포위당했습니다! 🐐 염소 승리!")
   if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
     st.session_state.catch = 0      
-    st.session_state.move = 0
+    st.session_state.move = 4
   if st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
-    st.session_state.start = False
+    st.session_state.start = True
     st.session_state.catch = 0
-    st.session_state.move = 0
+    st.session_state.move = 4
   
 else:
   # 차례 안내 - 염소차례라면
