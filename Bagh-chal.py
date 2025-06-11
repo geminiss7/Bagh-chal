@@ -158,6 +158,7 @@ elif st.session_state.start == False and st.session_state.catch == 4 and st.sess
   if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
     st.session_state.catch = 0
     st.session_state.move = 4
+    st.session_state.turn = "G"
 
   
 elif st.session_state.start == False and st.session_state.catch != 4 and st.session_state.move == 0: # 게임이 끝나고, 염소가 이긴 상태라면
@@ -167,6 +168,7 @@ elif st.session_state.start == False and st.session_state.catch != 4 and st.sess
   if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
     st.session_state.catch = 0      
     st.session_state.move = 4
+    st.session_state.turn = "G"
   
   
 else:
