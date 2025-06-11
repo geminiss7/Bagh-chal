@@ -190,7 +190,7 @@ elif st.session_state.start == False and st.session_state.catch != 4 and st.sess
     st.session_state.move = 4
   
 else:
-  st.session_state.catch = 0                                                                         # 게임을 다시 사작할 경우에 대비
+  st.session_state.count = 0                                                                         # 게임을 다시 사작할 경우에 대비
   # 차례 안내 - 염소차례라면
   if st.session_state.turn=="G":
     st.title('바그 찰(Bagh-chal) 게임 - 염소')
