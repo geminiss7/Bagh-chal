@@ -17,6 +17,7 @@ def Goat_move():
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click1 = None
       st.session_state.click2 = None
+      check()
 
 def Tiger_move():
   i, j = st.session_state.click1
@@ -35,6 +36,7 @@ def Tiger_move():
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click1 = None
       st.session_state.click2 = None
+      check()
       
   # 이동 거리가 상하좌우로 두칸이거나 대각선으로 두칸인 경우에서
   elif (abs(i - m) == 2 and j == n) or (i == m and abs(j - n) == 2) or (abs(i - m) == 2 and abs(j - n) == 2):
@@ -54,11 +56,13 @@ def Tiger_move():
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
       st.session_state.click1 = None
       st.session_state.click2 = None
+      check()
 
   else:
     st.toast('유효하지 않은 움직임입니다!')                  # 아니라면 이 문장을 출력한다.
     st.session_state.click1 = None
     st.session_state.click2 = None
+    check()
 
 def check():
   cannot_move_count = 0                                            # 움직일 수 없는 호랑이 수
