@@ -61,11 +61,12 @@ def check():
     st.session_state.start = False
 
   else: 
-    cannot_move_count = 0                                         # 움직일 수 없는 호랑이 수
+    #cannot_move_count = 0                                         # 움직일 수 없는 호랑이 수
+    st.session_state.move = 4
     for i in range(5):
       for j in range(5):
-        tiger_can_move = False
         if st.session_state.board[i][j] == "🐯":                  # 호랑이의 좌표를 찾음
+          tiger_can_move = False
           for di in [-2, -1, 0, 1, 2]:                            # 가로로 움직일 수 있는 거리
             for dj in [-2, -1, 0, 1, 2]:                          # 세로로 움직일 수 있는 거리
               ni, nj = i + di, j + dj                             # 움직인 새로운 좌표
@@ -81,19 +82,12 @@ def check():
             if tiger_can_move:
               break                                                                                                      # 움직일 수 있으면 이 반복문을 탈출한다.
           if not tiger_can_move:
-            cannot_move_count += 1                                                                                       # 이 호랑이는 못 움직임
-        
-    if cannot_move_count == 0:
-      st.session_state.move = 4
-    elif cannot_move_count == 1:
-      st.session_state.move = 3
-    elif cannot_move_count == 2:
-      st.session_state.move = 2
-    elif cannot_move_count == 3:
-      st.session_state.move = 1
-    else:                                                                                                       # 4개가 전부 못 움직이면 염소가 승리한다.
-      st.session_state.move = 0
-      st.session_state.start = False
+            st.session_state.move -= 1                                                                                       # 이 호랑이는 못 움직임
+            if st.session_state.move == 0:
+              st.session_state.start = False
+              break
+      if st.session_state.move == 0:
+        break
     
   
 
