@@ -149,7 +149,6 @@ if st.session_state.start == False:
     st.session_state.board[0][4] = "🐯"
     st.session_state.board[4][0] = "🐯"
     st.session_state.board[4][4] = "🐯"
-    st.rerun()
 
 
 else:
