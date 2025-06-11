@@ -11,7 +11,6 @@ def Goat_move():
       st.session_state.board[m][n] = "🐐"                     # 염소를 넣는다.
       st.session_state.click1 = None                         # 그 이후에 사용자가 고른 두 좌표를 초기화시킨다. (그 이후의 동작을 위해)
       st.session_state.click2 = None
-      check()
       st.session_state.turn = "T"                            # 그 이후 차례를 호랑이에게 넘긴다.
     else:
       st.toast('유효하지 않은 움직임입니다!')                # 아니라면 이 문장을 출력한다.
@@ -75,14 +74,14 @@ def check():
                   if st.session_state.board[ni][nj] == " ":       # 움직인 좌표가 비었다면 움직일 수 있다.
                     tiger_can_move = True
                     break                                         # 움직일 수 있으면 이 반복문을 탈출한다.
-                elif (abs(di) == 2 and dj == 0) or (di == 0 and abs(dj) == 2) or (abs(di) == 2 and abs(dj) == 2): # 염소를 먹으려고 할 때
+                elif (abs(di) == 2 and dj == 0) or (di == 0 and abs(dj) == 2) or (abs(di) == 2 and abs(dj) == 2):        # 염소를 먹으려고 할 때
                   if (st.session_state.board[ni][nj] == "" and st.session_state.board[(i+ni)//2][(j+nj)//2] == "🐐"):   # 염소가 중간에 있고 움직이려는 칸이 비었다면
-                    tiger_can_move = True                                                                       # 움직일 수 있다.
-                    break                                                                                       # 움직일 수 있으면 이 반복문을 탈출한다.
+                    tiger_can_move = True                                                                                # 움직일 수 있다.
+                    break                                                                                                # 움직일 수 있으면 이 반복문을 탈출한다.
             if tiger_can_move:
-              break                                                                                             # 움직일 수 있으면 이 반복문을 탈출한다.
+              break                                                                                                      # 움직일 수 있으면 이 반복문을 탈출한다.
           if not tiger_can_move:
-            cannot_move_count += 1                                                                                # 이 호랑이는 못 움직임
+            cannot_move_count += 1                                                                                       # 이 호랑이는 못 움직임
         
     if cannot_move_count == 0:
       st.session_state.move = 4
@@ -241,5 +240,4 @@ else:
   st.sidebar.markdown("### 염소 상태 🐐")
   st.sidebar.write("놓은 염소:", st.session_state.count)
   st.sidebar.write("잡힌 염소:", st.session_state.catch)
-  st.sidebar.markdown("### 🗺️ 현재 보드 상태")
- 
+  check()
