@@ -243,4 +243,36 @@ else:
                     if st.session_state.goat_placed_count < 20: # 염소 놓기 단계
                         _handle_goat_placement(r, c)
                     else: # 염소 이동 단계
-                        if st.session_
+                        if st.session_state.click1 is None: # 첫 번째 클릭 (옮길 염소 선택)
+                            if st.session_state.board[r][c] == "🐐":
+                                st.session_state.click1 = clicked_pos
+                                st.toast("이동할 위치를 선택하세요.")
+                            else:
+                                st.toast("염소를 선택하세요.")
+                        else: # 두 번째 클릭 (이동할 위치 선택)
+                            st.session_state.click2 = clicked_pos
+                            handle_goat_move() # 염소 이동 처리 함수 호출
+                else: # 호랑이 턴 로직
+                    if st.session_state.click1 is None: # 첫 번째 클릭 (옮길 호랑이 선택)
+                        if st.session_state.board[r][c] == "🐯":
+                            st.session_state.click1 = clicked_pos
+                            st.toast("이동할 위치를 선택하세요.")
+                        else:
+                            st.toast("호랑이를 선택하세요.")
+                    else: # 두 번째 클릭 (이동할 위치 선택)
+                        st.session_state.click2 = clicked_pos
+                        handle_tiger_move() # 호랑이 이동 처리 함수 호출
+
+    # --- 사이드바에 게임 상태 표시 ---
+    st.sidebar.markdown("### 현재 게임 상태")
+    st.sidebar.write(f"현재 턴: {'염소 🐐' if st.session_state.turn == 'G' else '호랑이 🐯'}")
+    st.sidebar.write("놓은 염소 수:", st.session_state.goat_placed_count)
+    st.sidebar.write("잡힌 염소 수:", st.session_state.tiger_catch_count)
+    st.sidebar.write("움직일 수 있는 호랑이 수:", st.session_state.movable_tigers_count)
+
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 보드 현황")
+    for r_idx in range(5):
+        # 보드 내용을 _로 표시하여 빈칸과 구분
+        row_display = " ".join([st.session_state.board[r_idx][c_idx] if st.session_state.board[r_idx][c_idx] else "_" for c_idx in range(5)])
+        st.sidebar.text(f"행 {r_idx}: {row_display}")
