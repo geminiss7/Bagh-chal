@@ -173,7 +173,6 @@ elif st.session_state.start == False and st.session_state.catch == 4 and st.sess
     st.session_state.move = 4
   if st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
     st.session_state.start = True
-    st.session_state.count = 0
     st.session_state.catch = 0
     st.session_state.move = 4
 
@@ -185,13 +184,13 @@ elif st.session_state.start == False and st.session_state.catch != 4 and st.sess
   if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
     st.session_state.catch = 0      
     st.session_state.move = 4
-  if st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
+  if st.button('한판 더 플레이'):                                                                       # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
     st.session_state.start = True
-    st.session_state.count = 0
     st.session_state.catch = 0
     st.session_state.move = 4
   
 else:
+  st.session_state.catch = 0                                                                         # 게임을 다시 사작할 경우에 대비
   # 차례 안내 - 염소차례라면
   if st.session_state.turn=="G":
     st.title('바그 찰(Bagh-chal) 게임 - 염소')
