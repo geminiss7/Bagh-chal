@@ -106,6 +106,9 @@ def check():
   
 
 # 게임의 시작 조건, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수, 움직일 수 없는 호랑이의 수를 저장하는 변수 생성, 저장
+if "start" not in st.session_state:
+  st.session_state.start = False
+
 if "turn" not in st.session_state:            # 게임의 시작조건 저장
     st.session_state.turn = "G"
   
