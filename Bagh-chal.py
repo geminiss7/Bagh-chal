@@ -71,8 +71,8 @@ def check():
     cannot_move_count = 0                                         # 움직일 수 없는 호랑이 수
     for i in range(5):
       for j in range(5):
+        tiger_can_move = False
         if st.session_state.board[i][j] == "🐯":                  # 호랑이의 좌표를 찾음
-          tiger_can_move = False
           for di in [-2, -1, 0, 1, 2]:                            # 가로로 움직일 수 있는 거리
             for dj in [-2, -1, 0, 1, 2]:                          # 세로로 움직일 수 있는 거리
               ni, nj = i + di, j + dj                             # 움직인 새로운 좌표
