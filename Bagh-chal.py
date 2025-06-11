@@ -158,6 +158,7 @@ if st.session_state.start == False and st.session_state.catch != 4 and st.sessio
   # 게임 시작하고 보드게임 판 생성, 저장
   if st.button('게임 시작'):
     st.session_state.start = True
+    st.session_state.count = 0                                                                       # 게임을 다시 사작할 경우에 대비
     st.session_state.board = [["" for _ in range(5)] for _ in range(5)]
     st.session_state.board[0][0] = "🐯"
     st.session_state.board[0][4] = "🐯"
@@ -190,7 +191,6 @@ elif st.session_state.start == False and st.session_state.catch != 4 and st.sess
     st.session_state.move = 4
   
 else:
-  st.session_state.count = 0                                                                         # 게임을 다시 사작할 경우에 대비
   # 차례 안내 - 염소차례라면
   if st.session_state.turn=="G":
     st.title('바그 찰(Bagh-chal) 게임 - 염소')
