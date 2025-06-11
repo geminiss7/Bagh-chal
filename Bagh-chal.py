@@ -173,6 +173,7 @@ elif st.session_state.start == False and st.session_state.catch == 4 and st.sess
     st.session_state.move = 4
   if st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
     st.session_state.start = True
+    st.session_state.count = 0
     st.session_state.catch = 0
     st.session_state.move = 4
 
@@ -186,6 +187,7 @@ elif st.session_state.start == False and st.session_state.catch != 4 and st.sess
     st.session_state.move = 4
   if st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
     st.session_state.start = True
+    st.session_state.count = 0
     st.session_state.catch = 0
     st.session_state.move = 4
   
