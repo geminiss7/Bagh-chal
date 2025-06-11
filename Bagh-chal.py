@@ -63,6 +63,7 @@ def check():
   cannot_move_count = 0                                            # 움직일 수 없는 호랑이 수
   if st.session_state.turn == "G" and st.session_state.catch >= 4: # 염소를 4개 잡았을 때 게임을 끝낸다.
     st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")
+    st.stop()
 
   else:
     for i in range(5):
@@ -90,7 +91,6 @@ def check():
 
     if cannot_move_count == 4:                                                                                    # 4개가 전부 못 움직이면 염소가 승리한다.
       st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
-      st.session_state.start = False
       st.stop()
     
   
