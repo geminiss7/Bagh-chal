@@ -106,13 +106,24 @@ def check():
   
 
 # 게임의 시작 조건, 클릭유무, 차례, 염소 말의 수를 저장하는 변수, 잡힌 염소의 수를 저장하는 변수, 움직일 수 없는 호랑이의 수를 저장하는 변수 생성, 저장
-st.session_state.start = False
-st.session_state.turn = "G"
-st.session_state.click1 = None
-st.session_state.click2 = None
-st.session_state.count = 0
-st.session_state.catch = 0
-st.session_state.move = 4
+if "turn" not in st.session_state:            # 게임의 시작조건 저장
+    st.session_state.turn = "G"
+  
+if "click1" not in st.session_state:          # 게임의 처음 클릭 저장
+    st.session_state.click1 = None
+  
+if "click2" not in st.session_state:          # 게임의 두번째 클릭 저장
+    st.session_state.click2 = None
+
+if "count" not in st.session_state:           # 놓은 염소의 수 저장
+    st.session_state.count = 0
+
+if "catch" not in st.session_state:           # 잡힌 염소의 수 저장
+    st.session_state.catch = 0
+
+if "move" not in st.session_state:            # 움직일 수 있는 호랑이 수 저장
+    st.session_state.move = 4
+
 
 # 게임이 시작하기 전 화면에서 실행
 if st.session_state.start == False:
@@ -150,6 +161,30 @@ if st.session_state.start == False:
     st.session_state.board[4][0] = "🐯"
     st.session_state.board[4][4] = "🐯"
 
+elif st.session_state.start == False and st.session_state.catch == 4 and st.session_state.move != 0: # 게임이 끝나고, 염소가 이긴 상태라면
+  st.success("호랑이가 염소를 4마리 잡았습니다! 🐯 호랑이 승리!")                                             # 이 문구를 띄운다.
+  if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
+    st.session_state.catch = 0
+    st.session_state.move = 0
+  elif st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
+    st.session_state.start = False
+    st.session_state.catch = 0
+    st.session_state.move = 0
+  else:
+    st.title('게임이 끝났습니다. 아래의 버튼 중 하나를 눌러주십시오.')
+
+  
+elif st.session_state.start == False and st.session_state.catch != 4 and st.session_state.move == 0: # 게임이 끝나고, 호랑이가 이긴 상태라면
+  st.success("호랑이가 포위당했습니다! 🐐 염소 승리!")                                                      # 이 문구를 띄운다.
+  if st.button('처음 화면으로'):                                                                        # 만약 이 버튼을 누른다면 규칙 설명 화면으로 간다.
+    st.session_state.catch = 0      
+    st.session_state.move = 0
+  elif st.button('한판 더 플레이'):                                                                     # 만약 이 버튼을 누른다면 리셋된 게임 화면으로 돌아간다.
+    st.session_state.start = False
+    st.session_state.catch = 0
+    st.session_state.move = 0
+  else:
+    st.title('게임이 끝났습니다. 아래의 버튼 중 하나를 눌러주십시오.')
 
 else:
   # 차례 안내 - 염소차례라면
