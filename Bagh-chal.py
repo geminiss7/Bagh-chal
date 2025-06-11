@@ -90,7 +90,7 @@ def check():
       st.success("호랑이의 모든 움직임이 막혔습니다! 🐐 염소 승리!")
       st.session_state.start = False
     else:
-      st.session_state.move = cannot_move_count
+      st.session_state.move = (4 - cannot_move_count)
   
 
 # 게임의 시작 조건 정의
